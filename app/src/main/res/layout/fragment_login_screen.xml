@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginScreenFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/AppTheme.EditLayout"
+        android:padding="24dp"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/ivLoginLogo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="208dp"
+            android:layout_height="76dp"
+            android:layout_margin="20dp"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/login_logo"
+            />
+
+        <TextView
+            android:id="@+id/tvLoginMessage"
+            style="@style/AppTheme.EditTextStyleRegularMedium"
+            android:layout_width="180dp"
+            android:textAlignment="center"
+            android:text="@string/login_directions_spanish"
+            android:textColor= "@color/purple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/ivLoginLogo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfLoginEmail"
+            android:layout_width="match_parent"
+            app:startIconDrawable="@drawable/email"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLoginMessage"
+            android:hint="@string/login_email_spanish"
+            android:layout_marginTop="20dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                android:inputType="textEmailAddress"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfLoginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_baseline_key_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tfLoginEmail"
+            android:hint="@string/login_password_spanish"
+            app:endIconMode="password_toggle"
+            android:layout_marginTop="20dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/cbLogin"
+            style="@style/EditButton"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/tfLoginPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="40dp"
+            android:text="@string/app_login_spanish"
+            />
+
+        <Button
+            android:id="@+id/obLogin"
+            app:layout_constraintTop_toBottomOf="@+id/cbLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_fingerprint"
+            style="?attr/materialButtonOutlinedStyle"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginTop="20dp"
+            app:icon="@drawable/ic_baseline_fingerprint_24"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

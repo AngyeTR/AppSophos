@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ti_doc_type_option"
+        android:title="@string/ti_doctype_spanish"
+        />
+
+    <item
+        android:id="@+id/cc_doc_type_option"
+        android:title="@string/cc_doctype_spanish"
+         />
+
+    <item
+        android:id="@+id/pa_doc_type_option"
+        android:title="@string/pa_doctype_spanish"
+        />
+    <item
+        android:id="@+id/ce_doc_type_option"
+        android:title="@string/ce_doctype_spanish"
+        />
+
+</menu>

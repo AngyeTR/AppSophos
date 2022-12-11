@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/AppTheme.EditLayout"
+        android:orientation="vertical"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/tp_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            >
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/app_back_spanish"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                app:menu="@menu/menu"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            style="@style/AppTheme.EditCard"
+            android:clickable="true"
+            android:focusable="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                style="@style/AppTheme.EditLayout"
+                >
+                <TextView
+                    style="@style/AppTheme.EditTextStyleRegularMedium"
+                    android:id="@+id/tvViewCardTitle"
+                    android:text="@string/view_card_title_example_spanish"/>
+                <TextView
+                    android:id="@+id/tvViewCardUser"
+                    style="@style/AppTheme.EditTextStyleRegularMedium"
+                    android:text="@string/view_card_name_example_spanish" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SendDocsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/AppTheme.EditLayout"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tp_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/app_back_spanish"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                app:menu="@menu/menu"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/tvSendDocs"
+            style="@style/AppTheme.EditTextStyleBoldMedium"
+            app:layout_constraintTop_toBottomOf="@id/tp_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/menu_send_document_spanish"
+            android:textAlignment="center"
+            />
+        <ImageButton
+            android:id="@+id/ibAddPhoto"
+            style="@style/EditImageButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSendDocs"
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+            android:contentDescription="@string/add_photo_icon"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/menu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ibAddPhoto"
+            app:boxBackgroundColor="@color/white"
+            android:layout_margin="24dp"
+            >
+
+            <AutoCompleteTextView
+                android:hint="@string/document_type_spanish"
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                android:inputType="none"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfDocNumber"
+            style="@style/AppTheme.EditTextLayout"
+            android:hint="@string/doc_number_spanish"
+            app:layout_constraintTop_toBottomOf="@id/menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:startIconDrawable="@drawable/ic_outline_file_present_24"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfName"
+            style="@style/AppTheme.EditTextLayout"
+            android:hint="@string/send_name_spanish"
+            app:layout_constraintTop_toBottomOf="@id/tfDocNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfLastName"
+            style="@style/AppTheme.EditTextLayout"
+            android:hint="@string/send_last_name_spanish"
+            app:layout_constraintTop_toBottomOf="@id/tfName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfEmail"
+            style="@style/AppTheme.EditTextLayout"
+            android:hint="@string/login_email_spanish"
+            app:layout_constraintTop_toBottomOf="@id/tfLastName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/city"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tfEmail"
+            app:boxBackgroundColor="@color/white"
+            >
+            <AutoCompleteTextView
+                android:hint="@string/send_city_spanish"
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                android:inputType="none"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfDocType"
+            style="@style/AppTheme.EditTextLayout"
+            android:hint="@string/document_type_spanish"
+            app:layout_constraintTop_toBottomOf="@id/city"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/cbLoadDoc"
+            style="@style/EditButton"
+            app:layout_constraintTop_toBottomOf="@+id/tfDocType"
+            app:layout_constraintStart_toStartOf="@id/tfDocType"
+            android:text="@string/send_doc_spanish"
+            app:icon="@drawable/ic_baseline_file_upload_24"
+            />
+
+        <Button
+            android:id="@+id/cbSend"
+            style="@style/EditButton"
+            android:layout_width="320dp"
+            app:layout_constraintTop_toBottomOf="@+id/cbLoadDoc"
+            app:layout_constraintStart_toStartOf="@id/tfDocType"
+            android:text="@string/send_spanish"
+            android:drawableStart="@drawable/ic_baseline_file_upload_24"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

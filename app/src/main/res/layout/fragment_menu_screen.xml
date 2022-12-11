@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/AppTheme.EditLayout"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <com.google.android.material.appbar.AppBarLayout
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tp_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="Camilo"
+                app:menu="@menu/menu"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/company_image"
+            style="@style/AppTheme.EditImageView"
+            android:contentDescription="@string/company_image"
+            android:src="@drawable/company_image_l"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tp_bar" />
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            style="@style/AppTheme.EditTextStyleBoldLarge"
+            android:text="@string/menu_welcome_spanish"
+            app:layout_constraintStart_toStartOf="@+id/company_image"
+            app:layout_constraintTop_toTopOf="@+id/company_image" />
+
+        <TextView
+            style="@style/AppTheme.EditTextStyleBoldMedium"
+            android:layout_width="250dp"
+            app:layout_constraintBottom_toBottomOf="@+id/company_image"
+            app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            app:layout_constraintStart_toStartOf="@+id/company_image"
+            android:paddingStart="50dp"
+            android:textColor="@color/white"
+            android:text="@string/menu_message_spanish"
+            />
+        <androidx.core.widget.NestedScrollView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/company_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSendDocs"
+                app:strokeColor="@color/pink"
+                style="@style/AppTheme.EditCard"
+                >
+                <RelativeLayout
+                    style="@style/AppTheme.EditLayout"
+                    >
+                    <TextView
+                        android:id="@+id/tvSendCard"
+                        style="@style/AppTheme.EditTextStyleBoldMedium"
+                        android:textColor="@color/pink"
+                        android:text="@string/menu_send_document_spanish"
+                        app:drawableStartCompat="@drawable/ic_baseline_insert_drive_file_24" />
+
+                    <Button
+                        android:layout_below="@+id/tvSendCard"
+                        android:id="@+id/ob_send"
+                        android:layout_margin="8dp"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+                        android:textSize="@dimen/text_size_small"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="wrap_content"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/app_login_spanish"
+                        android:textColor="@color/pink"
+                        />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardViewDocs"
+                app:strokeColor="@color/blue"
+                style="@style/AppTheme.EditCard"
+                >
+                <RelativeLayout
+                    style="@style/AppTheme.EditLayout"
+                    >
+
+                    <TextView
+                        android:id="@+id/tvViewCard"
+                        style="@style/AppTheme.EditTextStyleBoldMedium"
+                        android:drawableStart="@drawable/ic_baseline_content_paste_search_24"
+                        android:text="@string/menu_view_document_spanish"
+                        android:textColor="@color/blue"
+                        />
+
+                    <Button
+                        android:layout_below="@+id/tvViewCard"
+                        android:id="@+id/ob_view"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24_blue"
+                        android:layout_margin="8dp"
+                        android:textSize="@dimen/text_size_small"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="wrap_content"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/app_login_spanish"
+                        android:textColor="@color/blue"
+                        />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                app:strokeColor="@color/green"
+                style="@style/AppTheme.EditCard"
+                >
+                <RelativeLayout
+                    style="@style/AppTheme.EditLayout"
+                    >
+
+                    <TextView
+                        android:id="@+id/tvOfficeCard"
+                        style="@style/AppTheme.EditTextStyleBoldMedium"
+                        android:drawableStart="@drawable/ic_baseline_location_on_24"
+                        android:text="@string/menu_offices_spanish"
+                        android:textColor="@color/green"
+                        />
+
+                    <Button
+                        android:layout_below="@+id/tvOfficeCard"
+                        android:id="@+id/ob_office"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24_green"
+                        android:textSize="@dimen/text_size_small"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="wrap_content"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/app_login_spanish"
+                        android:layout_margin="8dp"
+                        android:textColor="@color/green"
+                        />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>

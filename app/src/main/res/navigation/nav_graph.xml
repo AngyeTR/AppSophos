@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginScreenFragment">
+
+    <fragment
+        android:id="@+id/loginScreenFragment"
+        android:name="com.example.appsophos.LoginScreenFragment"
+        android:label="fragment_login_screen"
+        tools:layout="@layout/fragment_login_screen" >
+        <action
+            android:id="@+id/action_loginScreenFragment_to_menuScreenFragment"
+            app:destination="@id/menuScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuScreenFragment"
+        android:name="com.example.appsophos.MenuScreenFragment"
+        android:label="fragment_menu_screen"
+        tools:layout="@layout/fragment_menu_screen" >
+        <action
+            android:id="@+id/action_menuScreenFragment_to_officesScreenFragment"
+            app:destination="@id/officesScreenFragment" />
+        <action
+            android:id="@+id/action_menuScreenFragment_to_sendDocsFragment"
+            app:destination="@id/sendDocsFragment" />
+        <action
+            android:id="@+id/action_menuScreenFragment_to_viewDocsFragment"
+            app:destination="@id/viewDocsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/officesScreenFragment"
+        android:name="com.example.appsophos.OfficesScreenFragment"
+        android:label="fragment_offices_screen"
+        tools:layout="@layout/fragment_offices_screen" >
+        <action
+            android:id="@+id/action_officesScreenFragment_to_menuScreenFragment"
+            app:destination="@id/menuScreenFragment" />
+        <action
+            android:id="@+id/action_officesScreenFragment_to_sendDocsFragment"
+            app:destination="@id/sendDocsFragment" />
+        <action
+            android:id="@+id/action_officesScreenFragment_to_viewDocsFragment"
+            app:destination="@id/viewDocsFragment" />
+        <action
+            android:id="@+id/action_officesScreenFragment_to_sendDocsFragment2"
+            app:destination="@id/sendDocsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendDocsFragment"
+        android:name="com.example.appsophos.SendDocsFragment"
+        android:label="fragment_send_docs"
+        tools:layout="@layout/fragment_send_docs" >
+        <action
+            android:id="@+id/action_sendDocsFragment_to_menuScreenFragment"
+            app:destination="@id/menuScreenFragment" />
+        <action
+            android:id="@+id/action_sendDocsFragment_to_viewDocsFragment"
+            app:destination="@id/viewDocsFragment" />
+        <action
+            android:id="@+id/action_sendDocsFragment_to_officesScreenFragment"
+            app:destination="@id/officesScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewDocsFragment"
+        android:name="com.example.appsophos.ViewDocsFragment"
+        android:label="fragment_view_docs"
+        tools:layout="@layout/fragment_view_docs" >
+        <action
+            android:id="@+id/action_viewDocsFragment_to_menuScreenFragment"
+            app:destination="@id/menuScreenFragment" />
+        <action
+            android:id="@+id/action_viewDocsFragment_to_sendDocsFragment"
+            app:destination="@id/sendDocsFragment" />
+        <action
+            android:id="@+id/action_viewDocsFragment_to_officesScreenFragment"
+            app:destination="@id/officesScreenFragment" />
+    </fragment>
+</navigation>

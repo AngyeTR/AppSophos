@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/send_option"
+        android:title="@string/menu_send_document_spanish"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/view_option"
+        android:title="@string/menu_view_document_spanish"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/offices_option"
+        android:title="@string/menu_offices_spanish"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mode_option"
+        android:title="@string/app_dark_mode_spanish"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/lang_option"
+        android:title="@string/app_lang_english"
+        app:showAsAction="never" />
+
+</menu>

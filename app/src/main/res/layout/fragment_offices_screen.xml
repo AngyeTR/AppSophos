@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OfficesScreenFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/AppTheme.EditLayout"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <com.google.android.material.appbar.AppBarLayout
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tp_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/app_back_spanish"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                app:menu="@menu/menu"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/tvOffices"
+            style="@style/AppTheme.EditTextStyleBoldMedium"
+            app:layout_constraintTop_toBottomOf="@id/tp_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/menu_offices_spanish"
+            android:textColor="@color/dark_gray"
+            android:textAlignment="center"
+            />
+
+        <ImageView
+            android:contentDescription="@string/map_example"
+            android:id="@+id/ivMapExample"
+            style="@style/AppTheme.EditImageView"
+            android:src="@drawable/map_example"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvOffices" />
+
+
+
+        <AutoCompleteTextView
+            android:hint="@string/send_city_spanish"
+            app:layout_constraintStart_toStartOf="@+id/ivMapExample"
+            app:layout_constraintEnd_toEndOf="@+id/ivMapExample"
+            app:layout_constraintTop_toTopOf="@+id/ivMapExample"
+            style="@style/AppTheme.EditTextStyleMediumMedium"
+            android:inputType="none"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
