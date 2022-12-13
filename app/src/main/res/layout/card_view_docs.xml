@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card"
+    style="@style/AppTheme.EditCard"
+    android:clickable="true"
+    android:focusable="true">
+    <LinearLayout
+        android:orientation="vertical"
+        style="@style/AppTheme.EditLayout"
+        >
+        <TextView
+            style="@style/AppTheme.EditTextStyleRegularMedium"
+            android:id="@+id/tvViewCardTitle"
+            android:text="@string/view_card_title_example_spanish"/>
+        <TextView
+            android:id="@+id/tvViewCardUser"
+            style="@style/AppTheme.EditTextStyleRegularMedium"
+            android:text="@string/view_card_name_example_spanish" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

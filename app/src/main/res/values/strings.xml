@@ -6,6 +6,7 @@
     <string name="app_lang_spanish_spanish">Español</string>
     <string name="app_lang_english">English</string>
     <string name="app_back_spanish">Regresar</string>
+    <string name="app_logo">App Logo</string>
 
     <string name="login_directions_spanish">Ingresa tus datos para acceder</string>
     <string name="login_email_spanish">Email</string>
@@ -17,28 +18,22 @@
     <string name="menu_send_document_spanish">Enviar documentos</string>
     <string name="menu_view_document_spanish">Ver documentos</string>
     <string name="menu_offices_spanish">Oficinas</string>
+    <string name="menu_icon">menu_icon</string>
 
     <string name="send_documents_spanish">Enviar</string>
-    <string name="app_logo">App Logo</string>
-    <string name="menu_icon">menu_icon</string>
-    <string name="company_image">company image</string>
-    <string name="document_type_spanish">Tipo de Documento</string>
-    <string name="doc_number_spanish">Numero de Documento</string>
-    <string name="add_photo_icon">add photo icon</string>
     <string name="send_name_spanish">Nombres</string>
     <string name="send_last_name_spanish">Apellidos</string>
     <string name="send_city_spanish">Ciudad</string>
     <string name="send_doc_spanish">Documento</string>
     <string name="send_spanish">Enviar</string>
+
     <string name="view_card_title_example_spanish">17/08/22 - Incapacidad</string>
     <string name="view_card_name_example_spanish">Jonatan Camilo Perez</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="map_example">map example</string>
-    <string name="cc_doctype_spanish">Cédula de ciudadanía</string>
-    <string name="ti_doctype_spanish">Tarjeta de identidad</string>
-    <string name="pa_doctype_spanish">Pasaporte</string>
-    <string name="ce_doctype_spanish">Cédula de Extranjería</string>
-
-
+    <string name="company_image">company image</string>
+    <string name="document_type_spanish">Tipo de Documento</string>
+    <string name="doc_number_spanish">Numero de Documento</string>
+    <string name="add_photo_icon">add photo icon</string>
 </resources>

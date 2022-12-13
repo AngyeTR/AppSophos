@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SendDocsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
         style="@style/AppTheme.EditLayout"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
@@ -19,6 +15,7 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
+                app:titleTextColor="@color/design_default_color_on_primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/app_back_spanish"
@@ -49,7 +46,7 @@
             />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/menu"
+            android:id="@+id/menuDocType"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
@@ -63,7 +60,7 @@
             <AutoCompleteTextView
                 android:hint="@string/document_type_spanish"
                 style="@style/AppTheme.EditTextStyleRegularMedium"
-                android:inputType="none"
+                android:inputType=""
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -71,7 +68,7 @@
             android:id="@+id/tfDocNumber"
             style="@style/AppTheme.EditTextLayout"
             android:hint="@string/doc_number_spanish"
-            app:layout_constraintTop_toBottomOf="@id/menu"
+            app:layout_constraintTop_toBottomOf="@id/menuDocType"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:startIconDrawable="@drawable/ic_outline_file_present_24"
@@ -131,9 +128,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tfEmail"
             app:boxBackgroundColor="@color/white"
+            android:padding="8dp"
             >
             <AutoCompleteTextView
                 android:hint="@string/send_city_spanish"
+                android:padding="8dp"
                 style="@style/AppTheme.EditTextStyleRegularMedium"
                 android:inputType="none"
                 />
@@ -171,5 +170,3 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>

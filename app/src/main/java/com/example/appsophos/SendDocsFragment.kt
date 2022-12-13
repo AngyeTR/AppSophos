@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.textfield.TextInputLayout
 
 class SendDocsFragment : Fragment() {
     private  lateinit var appBar: MaterialToolbar
-    private lateinit var btnSend: Button
+    private lateinit var textField: TextInputLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,11 @@ class SendDocsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val items = listOf("Cédula de Ciudadanía", "Tarjeta de Identidad", "Pasaporte", "Cédula de extranjería")
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        textField = view.findViewById(R.id.menuDocType)
+        (textField.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
         appBar = view.findViewById(R.id.topAppBar)
         appBar.setNavigationOnClickListener{

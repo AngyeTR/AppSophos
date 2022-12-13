@@ -24,27 +24,13 @@
                 />
 
         </com.google.android.material.appbar.AppBarLayout>
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card"
-            style="@style/AppTheme.EditCard"
-            android:clickable="true"
-            android:focusable="true">
 
-            <LinearLayout
-                android:orientation="vertical"
-                style="@style/AppTheme.EditLayout"
-                >
-                <TextView
-                    style="@style/AppTheme.EditTextStyleRegularMedium"
-                    android:id="@+id/tvViewCardTitle"
-                    android:text="@string/view_card_title_example_spanish"/>
-                <TextView
-                    android:id="@+id/tvViewCardUser"
-                    style="@style/AppTheme.EditTextStyleRegularMedium"
-                    android:text="@string/view_card_name_example_spanish" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDogs"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        />
 
 
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>

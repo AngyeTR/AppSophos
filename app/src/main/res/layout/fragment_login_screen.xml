@@ -30,7 +30,7 @@
             android:layout_width="180dp"
             android:textAlignment="center"
             android:text="@string/login_directions_spanish"
-            android:textColor= "@color/purple"
+            android:textColor= "@color/design_default_color_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_margin="20dp"

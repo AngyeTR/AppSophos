@@ -21,8 +21,8 @@
         <item name="android:layout_margin">8dp</item>
         <item name="android:textColor">@color/dark_gray</item>
         <item name="android:padding">8dp</item>
-        <item name="android:textColorHint">@color/dark_gray</item>
-        <item name="hintTextAppearance">@font/montserrat_regular</item>
+
+
     </style>
 
     <style name="AppTheme.EditTextStyleBoldMedium" parent="AppTheme">
@@ -42,7 +42,6 @@
         <item name="android:textSize">16sp</item>
         <item name="android:layout_margin">24dp</item>
         <item name="android:textColor">@color/dark_gray</item>
-        <item name="android:textColorHint">@color/dark_gray</item>
         <item name="android:drawablePadding">16dp</item>
         <item name="android:background">@color/white</item>
     </style>
@@ -71,9 +70,9 @@
     <style name="AppTheme.EditTextLayout" parent="AppTheme">
         <item name="android:layout_width">320dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColorHint">@color/dark_gray</item>
         <item name="boxBackgroundColor">@color/white</item>
         <item name="android:textColor">@color/dark_gray</item>
+
     </style>
     <style name="EditButton">
         <item name="android:layout_width">wrap_content</item>
@@ -88,7 +87,7 @@
         <item name="android:layout_margin">24dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/design_default_color_on_primary</item>
     </style>
 
     <style name="AppTheme.EditImageView" parent="AppTheme">
@@ -97,5 +96,7 @@
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:scaleType">fitXY</item>
     </style>
+
+
 
 </resources>
