@@ -59,6 +59,7 @@
 
             <AutoCompleteTextView
                 android:hint="@string/document_type_spanish"
+                android:id="@+id/actvDocType"
                 style="@style/AppTheme.EditTextStyleRegularMedium"
                 android:inputType=""
                 />
@@ -139,15 +140,22 @@
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tfDocType"
-            style="@style/AppTheme.EditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:hint="@string/document_type_spanish"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundColor="@color/white"
+            android:padding="8dp"
             >
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
+                android:hint="@string/send_documents_spanish"
+                android:padding="8dp"
                 style="@style/AppTheme.EditTextStyleRegularMedium"
+                android:inputType="none"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <Button

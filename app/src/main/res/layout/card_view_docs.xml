@@ -9,13 +9,14 @@
         android:orientation="vertical"
         style="@style/AppTheme.EditLayout"
         >
+
         <TextView
-            style="@style/AppTheme.EditTextStyleRegularMedium"
             android:id="@+id/tvViewCardTitle"
-            android:text="@string/view_card_title_example_spanish"/>
+            style="@style/AppTheme.EditTextStyleRegularMedium" />
+
         <TextView
             android:id="@+id/tvViewCardUser"
             style="@style/AppTheme.EditTextStyleRegularMedium"
-            android:text="@string/view_card_name_example_spanish" />
+            />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

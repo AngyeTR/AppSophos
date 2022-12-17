@@ -1,6 +1,8 @@
 package com.example.appsophos
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +10,20 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appsophos.R.id.action_loginScreenFragment_to_menuScreenFragment
+import kotlin.concurrent.thread
 
 class LoginScreenFragment : Fragment() {
     private lateinit var btnLogin: Button
+    private lateinit var userName: String
 
+    @SuppressLint("SuspiciousIndentation")
+    private fun loginFun() = thread {
+        val user = APIClient.service.fetchUserInfo("angye95@utp.edu.co", "vdYc38kG85V2")
+        val body = user.execute().body()
+        if (body != null)
+            Log.d("Main", body.apellido.toString())
+            userName =  body!!.nombre.toString()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +38,7 @@ class LoginScreenFragment : Fragment() {
 
         btnLogin = view.findViewById(R.id.cbLogin)
         btnLogin.setOnClickListener {
+            loginFun()
             findNavController().navigate(action_loginScreenFragment_to_menuScreenFragment)
         }
     }
