@@ -1,11 +1,12 @@
-package com.example.appsophos
+package com.example.appsophos.features.view_documents.presentation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appsophos.databinding.CardViewDocsBinding
+import com.example.appsophos.R
+import com.example.appsophos.features.view_documents.domain.Document
 
 
 class DocumentAdapter(private val documents: List<Document>): RecyclerView.Adapter<DocumentAdapter.ViewHolder>() {
@@ -19,7 +20,7 @@ class DocumentAdapter(private val documents: List<Document>): RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val document  = documents[position]
-        holder.title.text = "${document.TipoAdjunto}"
+        holder.title.text = document.TipoAdjunto
         holder.user.text = "${document.Nombre} ${document.Apellido}"
 
     }

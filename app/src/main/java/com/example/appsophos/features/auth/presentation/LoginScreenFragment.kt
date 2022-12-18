@@ -1,4 +1,4 @@
-package com.example.appsophos
+package com.example.appsophos.features.auth.presentation
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.appsophos.R
 import com.example.appsophos.R.id.action_loginScreenFragment_to_menuScreenFragment
+import com.example.appsophos.core.APIClient
 import kotlin.concurrent.thread
 
 class LoginScreenFragment : Fragment() {

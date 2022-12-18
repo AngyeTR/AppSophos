@@ -1,6 +1,10 @@
-package com.example.appsophos
+package com.example.appsophos.core.services.remote
 
+import com.example.appsophos.features.view_documents.domain.Documents
+import com.example.appsophos.features.auth.domain.User
+import com.example.appsophos.features.send_documents.domain.DocumentAdd
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -15,6 +19,6 @@ interface ApiService {
     fun fetchDocuments(@Query("idRegistro") idRegistro : String): Call<Documents>
 
     @POST("RS_Documentos")
-    fun addDocument(@Body document: Document) : Call<Document>
+    suspend fun addDocument(@Body document: DocumentAdd) : Response<Unit>
 
 }

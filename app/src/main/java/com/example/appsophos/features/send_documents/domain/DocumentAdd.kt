@@ -1,8 +1,6 @@
-package com.example.appsophos
+package com.example.appsophos.features.send_documents.domain
 
-data class Document(
-    val IdRegistro: String,
-    val Fecha: String,
+data class DocumentAdd(
     val TipoId: String,
     val Identificacion: String,
     val Nombre: String,

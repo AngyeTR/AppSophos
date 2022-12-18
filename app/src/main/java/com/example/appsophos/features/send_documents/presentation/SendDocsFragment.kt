@@ -1,4 +1,4 @@
-package com.example.appsophos
+package com.example.appsophos.features.send_documents.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -8,19 +8,21 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.appsophos.R
+import com.example.appsophos.core.APIClient
+import com.example.appsophos.features.send_documents.domain.DocumentAdd
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.textfield.TextInputLayout
-import kotlin.concurrent.thread
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SendDocsFragment : Fragment() {
     private  lateinit var appBar: MaterialToolbar
     private lateinit var textField: TextInputLayout
-    val response: ResponseModel= ResponseModel(message = "Respuesta")
 
-    val docExample: Document = Document (
-        IdRegistro = "118",
-        Fecha = "17/02/2022",
+    val docExample = DocumentAdd (
         TipoId = "Cédula de Ciudadanía",
         Identificacion= "1151958439",
         Nombre= "Angie Tatiana",
@@ -30,20 +32,6 @@ class SendDocsFragment : Fragment() {
         TipoAdjunto= "Incapacidad",
         Adjunto= "123456")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        fun addDocument(body: Document, String: ResponseModel){
-            val retrofit = APIClient.service.addDocument(body)
-            val document = retrofit.execute().body()
-            if (document != null) {
-                Log.d("Main", document.Nombre)
-            }
-            else Log.d("Main", "error")
-                }
-
-    }
-    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,6 +42,8 @@ class SendDocsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        addDocument(docExample)
 
         val menuDocTypes = listOf("Cédula de Ciudadanía", "Tarjeta de Identidad", "Pasaporte", "Cédula de extranjería")
         val adapterMenuDocType = ArrayAdapter(requireContext(), R.layout.list_item, menuDocTypes)
@@ -72,8 +62,6 @@ class SendDocsFragment : Fragment() {
         textField = view.findViewById(R.id.tfDocType)
         (textField.editText as? AutoCompleteTextView)?.setAdapter(adapterDocumentTypes)
 
-
-
         appBar = view.findViewById(R.id.topAppBar)
         appBar.setNavigationOnClickListener{
             findNavController().navigate(R.id.action_sendDocsFragment_to_menuScreenFragment)
@@ -91,6 +79,20 @@ class SendDocsFragment : Fragment() {
                 }
                 else -> false
             }
+        }
+
+    }
+
+    private fun addDocument(body: DocumentAdd) {
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val retrofit = APIClient.service.addDocument(body)
+            //val document = retrofit.execute().body()
+            Log.d("Main", retrofit.message())
+            //if (document != null) {
+
+            //}
+            //else Log.d("Main", "error")
         }
 
     }

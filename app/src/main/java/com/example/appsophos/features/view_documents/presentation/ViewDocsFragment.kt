@@ -1,4 +1,4 @@
-package com.example.appsophos
+package com.example.appsophos.features.view_documents.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -7,23 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.appsophos.R
+import com.example.appsophos.core.APIClient
 import com.google.android.material.appbar.MaterialToolbar
 import kotlin.concurrent.thread
 
 
 class ViewDocsFragment : Fragment() {
+
     private lateinit var appBar: MaterialToolbar
+
     private fun viewFun() = thread {
         val documents = APIClient.service.fetchDocuments("118")
         val body = documents.execute().body( )
         if (body != null)
             Log.d("Main", body.toString())
         else Log.d("Main", "Error")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(

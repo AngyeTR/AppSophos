@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/card"
-    style="@style/AppTheme.EditCard"
-    android:clickable="true"
-    android:focusable="true">
-    <LinearLayout
-        android:orientation="vertical"
-        style="@style/AppTheme.EditLayout"
-        >
+<LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvViewCardTitle"
-            style="@style/AppTheme.EditTextStyleRegularMedium" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        style="@style/AppTheme.EditCard"
+        android:clickable="true"
+        android:focusable="true">
+        <LinearLayout
+            android:orientation="vertical"
+            style="@style/AppTheme.EditLayout"
+            >
 
-        <TextView
-            android:id="@+id/tvViewCardUser"
-            style="@style/AppTheme.EditTextStyleRegularMedium"
-            />
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/tvViewCardTitle"
+                style="@style/AppTheme.EditTextStyleRegularMedium" />
+
+            <TextView
+                android:id="@+id/tvViewCardUser"
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

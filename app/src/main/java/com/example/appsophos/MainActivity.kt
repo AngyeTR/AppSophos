@@ -6,6 +6,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appsophos.features.view_documents.domain.Document
+import com.example.appsophos.features.view_documents.presentation.DocumentAdapter
 
 class MainActivity : AppCompatActivity() {
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginScreenFragment"
-        android:name="com.example.appsophos.LoginScreenFragment"
+        android:name="com.example.appsophos.features.auth.presentation.LoginScreenFragment"
         android:label="fragment_login_screen"
         tools:layout="@layout/fragment_login_screen" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuScreenFragment"
-        android:name="com.example.appsophos.MenuScreenFragment"
+        android:name="com.example.appsophos.features.dashboard.presentation.MenuScreenFragment"
         android:label="fragment_menu_screen"
         tools:layout="@layout/fragment_menu_screen" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/officesScreenFragment"
-        android:name="com.example.appsophos.OfficesScreenFragment"
+        android:name="com.example.appsophos.features.offices.presentation.OfficesScreenFragment"
         android:label="fragment_offices_screen"
         tools:layout="@layout/fragment_offices_screen" >
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/sendDocsFragment"
-        android:name="com.example.appsophos.SendDocsFragment"
+        android:name="com.example.appsophos.features.send_documents.presentation.SendDocsFragment"
         android:label="fragment_send_docs"
         tools:layout="@layout/fragment_send_docs" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewDocsFragment"
-        android:name="com.example.appsophos.ViewDocsFragment"
+        android:name="com.example.appsophos.features.view_documents.presentation.ViewDocsFragment"
         android:label="fragment_view_docs"
         tools:layout="@layout/fragment_view_docs" >
         <action

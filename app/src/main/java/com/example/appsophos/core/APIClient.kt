@@ -1,5 +1,6 @@
-package com.example.appsophos
+package com.example.appsophos.core
 
+import com.example.appsophos.core.services.remote.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
