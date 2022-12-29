@@ -1,39 +1,38 @@
 package com.example.appsophos.features.view_documents.presentation
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appsophos.R
+import com.example.appsophos.core.APIClient
+import com.example.appsophos.features.offices.domain.Office
 import com.example.appsophos.features.view_documents.domain.Document
+import org.w3c.dom.Text
+import kotlin.concurrent.thread
 
+class DocumentAdapter(
+    private val documents: List<Document>,
+    private val onItemClicked:  (position: Int) -> Unit ) :
+    RecyclerView.Adapter<DocumentViewHolder>() {
 
-class DocumentAdapter(private val documents: List<Document>): RecyclerView.Adapter<DocumentAdapter.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DocumentViewHolder {
+        val view = LayoutInflater.from(parent.context).
+        inflate(R.layout.card_view_docs, parent, false)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_view_docs, parent, false)
-
-        return ViewHolder(view)
-
+        return DocumentViewHolder(view, onItemClicked)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val document  = documents[position]
-        holder.title.text = document.TipoAdjunto
-        holder.user.text = "${document.Nombre} ${document.Apellido}"
-
+    override fun onBindViewHolder(holder: DocumentViewHolder, position: Int) {
+        val item = documents[position]
+        holder.render(item)
     }
 
     override fun getItemCount() =  documents.size
-
-
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-        val title: TextView = itemView.findViewById(R.id.tvViewCardTitle)
-        val user: TextView = itemView.findViewById(R.id.tvViewCardUser)
-
-        }
-
 }
 
 

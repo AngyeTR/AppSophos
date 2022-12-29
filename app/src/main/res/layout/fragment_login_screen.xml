@@ -21,7 +21,9 @@
             android:layout_height="76dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/app_logo"
-            android:src="@drawable/login_logo"
+            android:src="@drawable/sophos_logo"
+            android:tint="@color/design_default_color_primary"
+            tools:ignore="UseAppTint"
             />
 
         <TextView
@@ -51,6 +53,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/AppTheme.EditTextStyleRegularMedium"
+                android:id="@+id/tiLoginEmail"
                 android:inputType="textEmailAddress"
                 />
 
@@ -71,7 +74,9 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/AppTheme.EditTextStyleRegularMedium"
-                android:inputType="textPassword" />
+                android:id="@+id/tiLoginPassword"
+                android:inputType="textPassword"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 

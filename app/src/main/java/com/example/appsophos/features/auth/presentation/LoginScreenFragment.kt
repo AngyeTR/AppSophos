@@ -1,30 +1,37 @@
 package com.example.appsophos.features.auth.presentation
 
-import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.appsophos.R
-import com.example.appsophos.R.id.action_loginScreenFragment_to_menuScreenFragment
-import com.example.appsophos.core.APIClient
-import kotlin.concurrent.thread
+import com.example.appsophos.R.id.*
+import com.example.appsophos.core.sharedPreferences.SharedApp
+import com.example.appsophos.core.sharedPreferences.prefs
+import java.util.prefs.Preferences
+
 
 class LoginScreenFragment : Fragment() {
     private lateinit var btnLogin: Button
-    private lateinit var userName: String
+    var userName = ""
+    private lateinit var inputEmail: com.google.android.material.textfield.TextInputEditText
+    private lateinit var email: String
+    private lateinit var inputPassword: com.google.android.material.textfield.TextInputEditText
+    private lateinit var password: String
 
-    @SuppressLint("SuspiciousIndentation")
-    private fun loginFun() = thread {
-        val user = APIClient.service.fetchUserInfo("angye95@utp.edu.co", "vdYc38kG85V2")
-        val body = user.execute().body()
-        if (body != null)
-            Log.d("Main", body.apellido.toString())
-            userName =  body!!.nombre.toString()
+    private val viewModel: LoginViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -37,18 +44,34 @@ class LoginScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        btnLogin = view.findViewById(R.id.cbLogin)
-        btnLogin.setOnClickListener {
-            loginFun()
-            findNavController().navigate(action_loginScreenFragment_to_menuScreenFragment)
-        }
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginScreenFragment().apply {
+        viewModel.userModel.observe(viewLifecycleOwner, Observer {
+            userName = it.nombre
+            prefs.emailPref = email
+            if (userName.isNotBlank() || !userName.isNullOrEmpty() ) {
+                prefs.namePref = userName
+                findNavController().navigate(R.id.action_loginScreenFragment_to_menuScreenFragment)
             }
+            else {
+                Toast.makeText(activity?.applicationContext, "Information is wrong", Toast.LENGTH_SHORT).show()
+            }
+        } )
+
+        inputEmail = view.findViewById(R.id.tiLoginEmail)
+        inputPassword = view.findViewById(R.id.tiLoginPassword)
+
+        btnLogin = view.findViewById(cbLogin)
+        btnLogin.setOnClickListener {
+            email = inputEmail.text.toString().lowercase()
+            password = inputPassword.text.toString()
+
+            if(email == "" || password == "") {
+                Toast.makeText(activity?.applicationContext, "Enter your email and password", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Log.d("Main", "entre fun y toast")
+                viewModel.loginFun(email, password)
+
+            }
+        }
     }
 }

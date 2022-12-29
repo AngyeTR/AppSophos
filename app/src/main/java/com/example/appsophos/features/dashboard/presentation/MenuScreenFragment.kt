@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appsophos.R
+import com.example.appsophos.core.sharedPreferences.prefs
 import com.google.android.material.appbar.MaterialToolbar
 
 class MenuScreenFragment : Fragment() {
@@ -15,9 +16,11 @@ class MenuScreenFragment : Fragment() {
     private lateinit var btnViewDocs: Button
     private lateinit var btnOffices: Button
     private  lateinit var appBar: MaterialToolbar
+    lateinit var userName : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userName = prefs.namePref.toString()
     }
 
     override fun onCreateView(
@@ -31,7 +34,9 @@ class MenuScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         appBar = view.findViewById(R.id.topAppBar)
+        appBar.title = userName
         appBar.setOnMenuItemClickListener{ menuItem ->
             when (menuItem.itemId) {
                 R.id.send_option -> {

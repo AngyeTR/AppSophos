@@ -76,5 +76,17 @@
         <action
             android:id="@+id/action_viewDocsFragment_to_officesScreenFragment"
             app:destination="@id/officesScreenFragment" />
+        <action
+            android:id="@+id/action_viewDocsFragment_to_imageViewFragment"
+            app:destination="@id/imageViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageViewFragment"
+        android:name="com.example.appsophos.features.view_documents.presentation.ImageViewFragment"
+        android:label="fragment_image_view"
+        tools:layout="@layout/fragment_image_view" >
+        <action
+            android:id="@+id/action_imageViewFragment_to_viewDocsFragment"
+            app:destination="@id/viewDocsFragment" />
     </fragment>
 </navigation>

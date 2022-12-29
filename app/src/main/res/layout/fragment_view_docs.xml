@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         style="@style/AppTheme.EditLayout"
@@ -20,19 +19,27 @@
                 app:title="@string/app_back_spanish"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:menu="@menu/menu"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                style="@style/Widget.MaterialComponents.Toolbar.Surface"
+                app:titleTextColor="@color/design_default_color_primary"
+                app:navigationIconTint="@color/design_default_color_primary"
                 />
 
         </com.google.android.material.appbar.AppBarLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvViewDocs"
+        style="@style/AppTheme.EditTextStyleBoldMedium"
+        android:text="@string/menu_view_document_spanish"
+        android:textAlignment="center"
+        />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDocs"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/card_view_docs" />
 
-
-
-    </LinearLayout>
+</LinearLayout>

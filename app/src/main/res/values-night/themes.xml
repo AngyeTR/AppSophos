@@ -10,8 +10,8 @@
         <item name="colorSecondaryVariant">@color/pink</item>
         <item name="colorOnSecondary">@color/green</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/design_default_color_primary_variant</item>
-        <item name="appBarLayoutStyle">@color/design_default_color_primary_variant</item>
+        <item name="android:statusBarColor">@color/design_default_color_primary</item>
+        <item name="appBarLayoutStyle">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

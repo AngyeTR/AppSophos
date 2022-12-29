@@ -13,13 +13,14 @@
             android:layout_height="wrap_content"
             >
             <com.google.android.material.appbar.MaterialToolbar
-                app:titleTextColor="@color/design_default_color_on_primary"
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="Camilo"
                 app:menu="@menu/menu"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                style="@style/Widget.MaterialComponents.Toolbar.Surface"
+                app:titleTextColor="@color/design_default_color_primary"
+                app:navigationIconTint="@color/design_default_color_primary"
                 />
 
         </com.google.android.material.appbar.AppBarLayout>
