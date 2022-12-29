@@ -1,12 +1,12 @@
 package com.example.appsophos.features.send_documents.domain
 
 data class DocumentAdd(
-    val TipoId: String,
-    val Identificacion: String,
-    val Nombre: String,
-    val Apellido: String,
-    val Ciudad : String,
-    val Correo: String,
-    val TipoAdjunto: String,
+    var TipoId: String,
+    var Identificacion: String,
+    var Nombre: String,
+    var Apellido: String,
+    var Ciudad : String,
+    var Correo: String,
+    var TipoAdjunto: String,
     val Adjunto: String,
 )

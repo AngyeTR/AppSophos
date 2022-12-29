@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ViewDocsViewModel : ViewModel() {
-    val email: String = "angye95@utp.edu.co"
+    lateinit var email: String
     lateinit var idRegistro: String
     val documentByEmailModel = MutableLiveData<List<Document>>()
     val documentbyIdRegistro = MutableLiveData<Document>()

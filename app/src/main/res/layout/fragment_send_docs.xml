@@ -87,6 +87,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiDocNumber"
                     style="@style/AppTheme.EditTextStyleRegularMedium"
                     android:layout_height="60dp"                />
 
@@ -100,6 +101,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/AppTheme.EditTextStyleRegularMedium"
+                    android:id="@+id/tiName"
                     android:layout_height="60dp"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -111,6 +113,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/AppTheme.EditTextStyleRegularMedium"
+                    android:id="@+id/tiLastName"
                     android:layout_height="60dp"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -122,6 +125,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/AppTheme.EditTextStyleRegularMedium"
+                    android:id="@+id/tiEmail"
                     android:layout_height="60dp"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -134,6 +138,7 @@
                 >
                 <AutoCompleteTextView
                     android:hint="@string/send_city_spanish"
+                    android:id="@+id/atiCity"
                     android:padding="8dp"
                     style="@style/AppTheme.EditTextStyleRegularMedium"
                     android:inputType="none"
@@ -151,6 +156,7 @@
 
                 <AutoCompleteTextView
                     android:padding="8dp"
+                    android:id="@+id/atiDocType"
                     style="@style/AppTheme.EditTextStyleRegularMedium"
                     android:inputType="none"
                     android:layout_height="60dp"
@@ -170,6 +176,10 @@
                 android:text="@string/send_spanish"
                 android:drawableStart="@drawable/ic_baseline_file_upload_24"
                 />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivEjemplo"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

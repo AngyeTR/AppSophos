@@ -16,7 +16,7 @@ class MenuScreenFragment : Fragment() {
     private lateinit var btnViewDocs: Button
     private lateinit var btnOffices: Button
     private  lateinit var appBar: MaterialToolbar
-    lateinit var userName : String
+    private lateinit var userName : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,15 +25,13 @@ class MenuScreenFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+        savedInstanceState: Bundle?): View?
+    {
         return inflater.inflate(R.layout.fragment_menu_screen, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         appBar = view.findViewById(R.id.topAppBar)
         appBar.title = userName
@@ -69,13 +67,5 @@ class MenuScreenFragment : Fragment() {
         btnOffices.setOnClickListener{
             findNavController().navigate(R.id.action_menuScreenFragment_to_officesScreenFragment)
         }
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MenuScreenFragment().apply {
-            }
     }
 }

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -23,6 +24,7 @@ class ImageViewFragment : Fragment() {
     var image: String = ""
     lateinit var idRegistro: String
     lateinit var imageHolder: ImageView
+    lateinit var textHolder: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,30 +47,32 @@ class ImageViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.documentbyIdRegistro.observe(viewLifecycleOwner, Observer {
-            image = it.Adjunto
+            image = it.Adjunto.toString()
             Log.d("Main", "Imagen captada en string ${image}")
-            if (!image.isNullOrEmpty() || image?.contains("9j")!! || image.isNotBlank()) {
+            if (!image.isNullOrEmpty() && image?.contains("9j")!! && image.isNotBlank()) {
+                Log.d("Main", image)
                 val imgConverted = convertString(image)
                 imageHolder.setImageBitmap(imgConverted)
+                textHolder.setText("")
             }
             else {
                 imageHolder.setImageResource(R.drawable.ic_baseline_image_not_supported_24)
+                textHolder.setText("Image Not Available")
+
             }
         })
 
         imageHolder = view.findViewById(R.id.ivCardImage)
+        textHolder = view.findViewById(R.id.tvCardImage)
         backButton = view.findViewById(R.id.bBack)
         backButton.setOnClickListener {
             findNavController().navigate(R.id.action_imageViewFragment_to_viewDocsFragment)
         }
-
-
     }
 
     fun convertString(imgString: String): Bitmap {
         val imageB64 = Base64.decode(imgString, Base64.DEFAULT)
         val processedString = BitmapFactory.decodeByteArray(imageB64, 0, imageB64.size)
-
         return processedString
     }
 
