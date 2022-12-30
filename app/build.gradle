@@ -1,6 +1,10 @@
 plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.android.application' version '7.3.1'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+
 }
 
 android {
@@ -57,13 +61,14 @@ dependencies {
     // Testing Navigation
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
 
-    def picassoVersion = "2.71828"
-    implementation "com.squareup.picasso:picasso:$picassoVersion"
 
     implementation "com.squareup.picasso:picasso:2.71828"
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+    // DaggerHilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 }
 task prepareKotlinBuildScriptModel {
 

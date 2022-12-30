@@ -7,12 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.appsophos.MainActivity
 import com.example.appsophos.core.APIClient
 import com.example.appsophos.features.auth.domain.User
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor() : ViewModel() {
     val userModel = MutableLiveData<User>()
     val idUsuario = MutableLiveData<String>()
     lateinit var email : String
