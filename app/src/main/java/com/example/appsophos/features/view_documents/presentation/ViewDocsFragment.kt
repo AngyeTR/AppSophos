@@ -49,7 +49,6 @@ class ViewDocsFragment : Fragment() {
 
         viewModel.getDocumentsByEmail(email)
         viewModel.documentByEmailModel.observe(viewLifecycleOwner, Observer {
-
             documentList = it
             if(!documentList.isNullOrEmpty()){
                 recyclerView = view.findViewById(R.id.rvDocs)
@@ -60,8 +59,6 @@ class ViewDocsFragment : Fragment() {
                 recyclerView.adapter = adapter
             }
         })
-
-
 
         appBar = view.findViewById(R.id.topAppBar)
         appBar.setNavigationOnClickListener {

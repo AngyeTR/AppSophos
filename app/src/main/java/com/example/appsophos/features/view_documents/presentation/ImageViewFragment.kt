@@ -25,6 +25,7 @@ class ImageViewFragment : Fragment() {
     lateinit var idRegistro: String
     lateinit var imageHolder: ImageView
     lateinit var textHolder: TextView
+    lateinit var convertedImage: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,15 +52,22 @@ class ImageViewFragment : Fragment() {
             Log.d("Main", "Imagen captada en string ${image}")
             if (!image.isNullOrEmpty() && image?.contains("9j")!! && image.isNotBlank()) {
                 Log.d("Main", image)
-                val imgConverted = convertString(image)
-                imageHolder.setImageBitmap(imgConverted)
-                textHolder.setText("")
+                //val imgConverted = convertString(image)
+                viewModel.convertString(image)
+
+                //imageHolder.setImageBitmap(imgConverted)
+                //textHolder.setText("")
             }
             else {
                 imageHolder.setImageResource(R.drawable.ic_baseline_image_not_supported_24)
                 textHolder.setText("Image Not Available")
 
             }
+        })
+
+        viewModel.encodedString.observe(viewLifecycleOwner, Observer{
+            imageHolder.setImageBitmap(it)
+            textHolder.setText("")
         })
 
         imageHolder = view.findViewById(R.id.ivCardImage)
@@ -69,14 +77,4 @@ class ImageViewFragment : Fragment() {
             findNavController().navigate(R.id.action_imageViewFragment_to_viewDocsFragment)
         }
     }
-
-    fun convertString(imgString: String): Bitmap {
-        val imageB64 = Base64.decode(imgString, Base64.DEFAULT)
-        val processedString = BitmapFactory.decodeByteArray(imageB64, 0, imageB64.size)
-        return processedString
-    }
-
-
-
-
 }

@@ -1,10 +1,15 @@
 package com.example.appsophos.features.send_documents.presentation
 
+import android.app.Activity
+import android.content.ContentValues
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Base64.DEFAULT
 import android.util.Base64.encodeToString
 import android.util.Base64
@@ -13,7 +18,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -24,7 +31,10 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.textfield.TextInputLayout
 import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.annotation.RequiresApi
+import androidx.core.content.FileProvider
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.text.SimpleDateFormat
 import java.util.*
 
 class SendDocsFragment : Fragment() {
@@ -43,8 +53,6 @@ class SendDocsFragment : Fragment() {
     lateinit var sendBtn: Button
     lateinit var document: DocumentAdd
     var infoIsComplete = true
-    lateinit var image : Uri
-    lateinit var imageExam : ImageView
     var processedString: String = ""
 
     private val viewModel : SendDocsViewModel by viewModels()
@@ -67,8 +75,6 @@ class SendDocsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        imageExam = view.findViewById(R.id.ivEjemplo)
-
         inputDocType = view.findViewById(R.id.actvDocType)
         inputDocNumber = view.findViewById(R.id.tiDocNumber)
         inputName = view.findViewById(R.id.tiName)
@@ -79,13 +85,18 @@ class SendDocsFragment : Fragment() {
         inputCamera= view.findViewById(R.id.ibAddPhoto)
         inputDoc = view.findViewById(R.id.cbLoadDoc)
         sendBtn = view.findViewById(R.id.cbSend)
+        inputCamera = view.findViewById(R.id.ibAddPhoto)
 
+
+        inputCamera.setOnClickListener(){
+            startForResult.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
+        }
 
         val menuDocTypes = listOf("CC", "TI", "PA", "CE")
         setListOptions(menuDocTypes, view.findViewById(R.id.menuDocType))
 
         viewModel.officeList.observe(viewLifecycleOwner, Observer {
-            officesList = it
+            officesList = it.toSet().toList()
             if(!officesList.isNullOrEmpty()){
                 setListOptions(officesList, view.findViewById(R.id.city))
             }
@@ -105,12 +116,22 @@ class SendDocsFragment : Fragment() {
             pickImage.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
         }
 
+        viewModel.encodedImg.observe(viewLifecycleOwner, Observer {
+            processedString = it
+        })
+
+        viewModel.bitMapImage.observe(viewLifecycleOwner, Observer {
+            inputCamera.setImageBitmap(it)
+        })
+
         sendBtn.setOnClickListener(){
             document = getValues()
 
             if (infoIsComplete){
                 Log.d("Main", "info Completa ${infoIsComplete} ${document}")
                 addDocument(document)
+                Toast.makeText(activity?.applicationContext, "Success", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_sendDocsFragment_to_menuScreenFragment)
             }
             else {
                 Log.d("Main", "Info incompleta ${infoIsComplete} ${document}")
@@ -118,6 +139,7 @@ class SendDocsFragment : Fragment() {
                 infoIsComplete = true
             }
         }
+
     }
 
 
@@ -174,24 +196,28 @@ class SendDocsFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.P)
     val pickImage = registerForActivityResult(PickVisualMedia()){ uri ->
         if(uri != null) {
-            image = uri
-
-            val source = ImageDecoder.createSource(requireActivity().contentResolver, image)
-            val bitmap = ImageDecoder.decodeBitmap(source)
-            imageExam.setImageBitmap(bitmap)
-            processedString = encodeImage(bitmap)?.filter { !it.isWhitespace() }.toString()
-            Log.d("Main", "String: ${processedString}")
+            val uriImg = uri
+            val source = ImageDecoder.createSource(requireActivity().contentResolver, uriImg)
+            viewModel.convertUriToBitmap(source)
         }
         else{
             Log.d("Main", "Imagen no seleccionada")
         }
     }
 
-    private fun encodeImage(bm: Bitmap): String? {
-        val baos = ByteArrayOutputStream()
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val ba = baos.toByteArray()
-        return android.util.Base64.encodeToString(ba, android.util.Base64.DEFAULT)
-    }
-
+    @RequiresApi(Build.VERSION_CODES.P)
+    private val startForResult =
+        registerForActivityResult(StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+               val intentImage = result.data
+                if (intentImage != null) {
+                    viewModel.convertIntentToBitmap(intentImage)
+                }
+            }
+            else {
+                Log.d("Main", "Imagen no tomada")
+            }
+        }
 }
+
+

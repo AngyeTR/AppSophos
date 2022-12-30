@@ -1,5 +1,8 @@
 package com.example.appsophos.features.view_documents.presentation
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,6 +18,7 @@ class ViewDocsViewModel : ViewModel() {
     lateinit var idRegistro: String
     val documentByEmailModel = MutableLiveData<List<Document>>()
     val documentbyIdRegistro = MutableLiveData<Document>()
+    val encodedString = MutableLiveData<Bitmap>()
 
     fun getDocumentsByEmail(email: String) {
         viewModelScope.launch (Dispatchers.IO) {
@@ -31,4 +35,13 @@ class ViewDocsViewModel : ViewModel() {
             documentbyIdRegistro.postValue(document)
         }
     }
+
+    fun convertString(imgString: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val imageB64 = Base64.decode(imgString, Base64.DEFAULT)
+            val processedString = BitmapFactory.decodeByteArray(imageB64, 0, imageB64.size)
+            encodedString.postValue(processedString)
+        }
+    }
+
 }
