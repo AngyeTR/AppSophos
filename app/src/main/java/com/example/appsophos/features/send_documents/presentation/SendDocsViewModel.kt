@@ -1,50 +1,41 @@
 package com.example.appsophos.features.send_documents.presentation
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.graphics.ImageDecoder.Source
-import android.net.Uri
 import android.os.Build
-import android.util.Log
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appsophos.core.APIClient
-import com.example.appsophos.features.offices.domain.Offices
+import com.example.appsophos.core.APIClient.getRetrofit
 import com.example.appsophos.features.send_documents.domain.DocumentAdd
-import com.example.appsophos.features.view_documents.domain.Document
-import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
+import javax.inject.Inject
 
-
+//@HiltViewModel
+//class SendDocsViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
 class SendDocsViewModel : ViewModel() {
     lateinit var document: DocumentAdd
     val officeList = MutableLiveData<List<String>>()
     val encodedImg= MutableLiveData<String>()
     var bitMapImage = MutableLiveData<Bitmap>()
+    var documentToPost = MutableLiveData<DocumentAdd>()
     var processedString: String = ""
 
     fun postDocument(document: DocumentAdd) {
         viewModelScope.launch (Dispatchers.IO) {
-            val documents = APIClient.service.addDocument(document)
+            val documents = getRetrofit().addDocument(document)
         }
     }
 
     fun getOffices() {
         viewModelScope.launch (Dispatchers.IO) {
-            val offices = APIClient.service.getOfficesInfo()
+            val offices = getRetrofit().getOfficesInfo()
             val body = offices.execute().body()!!.Items
             val officeNames = body.map { body -> body.Ciudad.toString() }
             officeList.postValue(officeNames)
@@ -76,4 +67,19 @@ class SendDocsViewModel : ViewModel() {
         val ba = baos.toByteArray()
         return android.util.Base64.encodeToString(ba, android.util.Base64.DEFAULT)
     }
+
+    fun createDocument(inputDocType: String, inputDocNumber: String, inputName: String, inputLastName: String, inputEmail: String, inputCity: String, inputAttachType: String, attachment: String) {
+        val docExample = DocumentAdd(
+            TipoId = inputDocType,
+            Identificacion = inputDocNumber,
+            Nombre = inputName,
+            Apellido = inputLastName,
+            Correo = inputEmail,
+            Ciudad = inputCity,
+            TipoAdjunto = inputAttachType,
+            Adjunto = attachment)
+        documentToPost.postValue(docExample)
+    }
+
+
 }

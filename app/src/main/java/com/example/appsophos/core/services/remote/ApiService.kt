@@ -2,6 +2,7 @@ package com.example.appsophos.core.services.remote
 
 import com.example.appsophos.features.view_documents.domain.Documents
 import com.example.appsophos.features.auth.domain.User
+import com.example.appsophos.features.offices.domain.Office
 import com.example.appsophos.features.offices.domain.Offices
 import com.example.appsophos.features.send_documents.domain.DocumentAdd
 import retrofit2.Call
@@ -31,5 +32,9 @@ interface ApiService {
     @GET("RS_Oficinas")
     //suspend
     fun getOfficesInfo(): Call<Offices>
+
+    @GET("RS_Oficinas")
+    fun getOfficebyName(@Query("ciudad") ciudad: String) : Call<Offices>
+
 
 }

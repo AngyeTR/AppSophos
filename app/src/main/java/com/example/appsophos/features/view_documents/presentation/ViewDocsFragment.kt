@@ -10,23 +10,24 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appsophos.R
-import com.example.appsophos.core.sharedPreferences.prefs
+import com.example.appsophos.SharedApp.Companion.prefs
 import com.example.appsophos.features.view_documents.domain.Document
 import com.google.android.material.appbar.MaterialToolbar
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+//@AndroidEntryPoint
 class ViewDocsFragment : Fragment() {
-
-    private val viewModel: ViewDocsViewModel by viewModels()
+   val viewModel: ViewDocsViewModel by viewModels()
     private lateinit var adapter: DocumentAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var appBar: MaterialToolbar
     lateinit var email : String
     lateinit var documentList : List<Document>
     lateinit var idRegister: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        email = prefs.emailPref.toString()
+        email = prefs?.emailPref.toString()
     }
 
     override fun onCreateView(
@@ -39,11 +40,12 @@ class ViewDocsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setAppBar()
+
         fun onItemClick(position: Int){
             idRegister = documentList[position].IdRegistro.toString()
             val bundle = Bundle()
             bundle.putString("idRegister", idRegister)
-
             findNavController().navigate(R.id.action_viewDocsFragment_to_imageViewFragment, bundle)
         }
 
@@ -59,12 +61,14 @@ class ViewDocsFragment : Fragment() {
                 recyclerView.adapter = adapter
             }
         })
+    }
 
-        appBar = view.findViewById(R.id.topAppBar)
-        appBar.setNavigationOnClickListener {
+    fun setAppBar(){
+        val appBar = view?.findViewById<MaterialToolbar>(R.id.topAppBar)
+        appBar?.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_viewDocsFragment_to_menuScreenFragment)
         }
-        appBar.setOnMenuItemClickListener { menuItem ->
+        appBar?.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
 
                 R.id.send_option -> {

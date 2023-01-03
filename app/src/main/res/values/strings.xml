@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">App Sophos</string>
     <string name="app_login_spanish">Ingresar</string>
     <string name="app_dark_mode_spanish">Modo Nocturno</string>
@@ -36,4 +36,10 @@
     <string name="document_type_spanish">Tipo de Documento</string>
     <string name="doc_number_spanish">Numero de Documento</string>
     <string name="add_photo_icon">add photo icon</string>
+    
+    
+    <string name="alert_title_spanish">Permiso inhabilitado</string>
+    <string name="alert_text_spanish">Habilite el permiso de forma manual en las configuraciones de su dispositivo</string>
+    <string name="alert_close_spanish">Cerrar</string>
+
 </resources>

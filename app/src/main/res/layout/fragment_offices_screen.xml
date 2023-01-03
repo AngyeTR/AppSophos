@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.offices.presentation.OfficesScreenFragment">
+>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/AppTheme.EditLayout"
@@ -39,26 +39,65 @@
             android:textAlignment="center"
             />
 
-        <ImageView
-            android:contentDescription="@string/map_example"
-            android:id="@+id/ivMapExample"
-            style="@style/AppTheme.EditImageView"
-            android:src="@drawable/map_example"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvOffices" />
 
-
-
-        <AutoCompleteTextView
-            android:hint="@string/send_city_spanish"
-            app:layout_constraintStart_toStartOf="@+id/ivMapExample"
-            app:layout_constraintEnd_toEndOf="@+id/ivMapExample"
-            app:layout_constraintTop_toTopOf="@+id/ivMapExample"
-            style="@style/AppTheme.EditTextStyleMediumMedium"
-            android:inputType="none"
-            android:drawableStart="@drawable/ic_baseline_search_24"
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/map"
+            tools:context= ".MainActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            app:layout_constraintTop_toBottomOf="@+id/tvOffices"
             />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/menuOffices"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="@+id/map"
+            app:layout_constraintEnd_toEndOf="@+id/map"
+            app:layout_constraintTop_toTopOf="@+id/map"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/white"
+            >
+
+            <AutoCompleteTextView
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.EditTextStyleRegularMedium"
+                android:inputType=""
+                android:hint="@string/send_city_spanish"
+                android:id="@+id/atiCityLocation"
+                app:layout_constraintStart_toStartOf="@+id/map"
+                app:layout_constraintEnd_toEndOf="@+id/map"
+                app:layout_constraintTop_toTopOf="@+id/map"
+                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:singleLine="true"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/officeCard"
+            style="@style/AppTheme.EditCard"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/menuOffices"
+            app:layout_constraintStart_toStartOf="@+id/menuOffices"
+            android:padding="8dp"
+            >
+            <LinearLayout
+                android:orientation="vertical"
+                style="@style/AppTheme.EditLayout"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvMap"
+                    style="@style/AppTheme.EditTextStyleRegularMedium"
+                    />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

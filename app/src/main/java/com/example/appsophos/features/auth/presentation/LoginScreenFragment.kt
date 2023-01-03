@@ -1,7 +1,5 @@
 package com.example.appsophos.features.auth.presentation
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,20 +13,22 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.appsophos.R
 import com.example.appsophos.R.id.*
-import com.example.appsophos.core.sharedPreferences.SharedApp
-import com.example.appsophos.core.sharedPreferences.prefs
-import java.util.prefs.Preferences
+import com.example.appsophos.SharedApp.Companion.prefs
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+//@AndroidEntryPoint
+class LoginScreenFragment  : Fragment() {
 
-class LoginScreenFragment : Fragment() {
-    private lateinit var btnLogin: Button
+    val viewModel: LoginViewModel by viewModels()
     var userName = ""
     private lateinit var inputEmail: com.google.android.material.textfield.TextInputEditText
     private lateinit var email: String
     private lateinit var inputPassword: com.google.android.material.textfield.TextInputEditText
     private lateinit var password: String
 
-    private val viewModel: LoginViewModel by viewModels()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +46,9 @@ class LoginScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.userModel.observe(viewLifecycleOwner, Observer {
             userName = it.nombre
-            prefs.emailPref = email
+            prefs?.emailPref = email
             if (userName.isNotBlank() || !userName.isNullOrEmpty() ) {
-                prefs.namePref = userName
+                prefs?.namePref = userName
                 findNavController().navigate(R.id.action_loginScreenFragment_to_menuScreenFragment)
             }
             else {
@@ -59,7 +59,7 @@ class LoginScreenFragment : Fragment() {
         inputEmail = view.findViewById(R.id.tiLoginEmail)
         inputPassword = view.findViewById(R.id.tiLoginPassword)
 
-        btnLogin = view.findViewById(cbLogin)
+        val btnLogin = view.findViewById<Button>(cbLogin)
         btnLogin.setOnClickListener {
             email = inputEmail.text.toString().lowercase()
             password = inputPassword.text.toString()

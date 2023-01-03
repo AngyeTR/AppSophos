@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginScreenFragment">
+    app:startDestination="@id/loginScreenFragment"
+    android:name="android:name=“androidx.navigation.fragment.NavHostFragment"
+    >
 
     <fragment
         android:id="@+id/loginScreenFragment"

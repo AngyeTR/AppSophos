@@ -8,19 +8,20 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appsophos.R
-import com.example.appsophos.core.sharedPreferences.prefs
-import com.google.android.material.appbar.MaterialToolbar
+import com.example.appsophos.SharedApp.Companion.prefs
 
-class MenuScreenFragment : Fragment() {
-    private lateinit var btnSendDocs: Button
-    private lateinit var btnViewDocs: Button
-    private lateinit var btnOffices: Button
-    private  lateinit var appBar: MaterialToolbar
+import com.google.android.material.appbar.MaterialToolbar
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
+//@AndroidEntryPoint
+//@Inject constructor()
+class MenuScreenFragment: Fragment() {
     private lateinit var userName : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userName = prefs.namePref.toString()
+        userName = prefs?.namePref.toString()
     }
 
     override fun onCreateView(
@@ -32,10 +33,30 @@ class MenuScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val btnSendDocs = view.findViewById<Button>(R.id.ob_send)
+        val btnViewDocs = view.findViewById<Button>(R.id.ob_view)
+        val btnOffices = view.findViewById<Button>(R.id.ob_office)
 
-        appBar = view.findViewById(R.id.topAppBar)
-        appBar.title = userName
-        appBar.setOnMenuItemClickListener{ menuItem ->
+        setAppBar()
+
+        btnSendDocs.setOnClickListener {
+            findNavController().navigate(R.id.action_menuScreenFragment_to_sendDocsFragment)
+        }
+
+        btnViewDocs.setOnClickListener{
+            findNavController().navigate(R.id.action_menuScreenFragment_to_viewDocsFragment)
+        }
+
+        btnOffices.setOnClickListener{
+            findNavController().navigate(R.id.action_menuScreenFragment_to_officesScreenFragment)
+        }
+    }
+
+    fun setAppBar(){
+        val appBar = view?.findViewById<MaterialToolbar>(R.id.topAppBar)
+
+        appBar?.title = userName
+        appBar?.setOnMenuItemClickListener{ menuItem ->
             when (menuItem.itemId) {
                 R.id.send_option -> {
                     findNavController().navigate(R.id.action_menuScreenFragment_to_sendDocsFragment)
@@ -51,21 +72,6 @@ class MenuScreenFragment : Fragment() {
                 }
                 else -> false
             }
-        }
-
-        btnSendDocs = view.findViewById(R.id.ob_send)
-        btnSendDocs.setOnClickListener {
-            findNavController().navigate(R.id.action_menuScreenFragment_to_sendDocsFragment)
-        }
-
-        btnViewDocs = view.findViewById(R.id.ob_view)
-        btnViewDocs.setOnClickListener{
-            findNavController().navigate(R.id.action_menuScreenFragment_to_viewDocsFragment)
-        }
-
-        btnOffices = view.findViewById(R.id.ob_office)
-        btnOffices.setOnClickListener{
-            findNavController().navigate(R.id.action_menuScreenFragment_to_officesScreenFragment)
         }
     }
 }

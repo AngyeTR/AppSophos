@@ -7,13 +7,17 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appsophos.core.APIClient
+import com.example.appsophos.core.APIClient.getRetrofit
 import com.example.appsophos.features.view_documents.domain.Document
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
+//@HiltViewModel
+//class ViewDocsViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
 class ViewDocsViewModel : ViewModel() {
+
     lateinit var email: String
     lateinit var idRegistro: String
     val documentByEmailModel = MutableLiveData<List<Document>>()
@@ -22,7 +26,7 @@ class ViewDocsViewModel : ViewModel() {
 
     fun getDocumentsByEmail(email: String) {
         viewModelScope.launch (Dispatchers.IO) {
-            val documents = APIClient.service.fetchDocumentsByEmail(email)
+            val documents = getRetrofit().fetchDocumentsByEmail(email)
             val documentList = documents.execute().body()!!.Items
             documentByEmailModel.postValue(documentList)
             Log.d("Main", documentList.toString() )
@@ -30,7 +34,7 @@ class ViewDocsViewModel : ViewModel() {
     }
     fun getDocumentsById(idRegistro: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val documents = APIClient.service.fetchDocumentsById(idRegistro)
+            val documents = getRetrofit().fetchDocumentsById(idRegistro)
             val document = documents.execute().body()!!.Items[0]
             documentbyIdRegistro.postValue(document)
         }

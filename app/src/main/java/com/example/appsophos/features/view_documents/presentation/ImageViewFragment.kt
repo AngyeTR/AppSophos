@@ -16,10 +16,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.appsophos.R
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+//@AndroidEntryPoint
 class ImageViewFragment : Fragment() {
-    private val viewModel: ViewDocsViewModel by viewModels()
+    val viewModel: ViewDocsViewModel by viewModels()
     lateinit var backButton: Button
     var image: String = ""
     lateinit var idRegistro: String
