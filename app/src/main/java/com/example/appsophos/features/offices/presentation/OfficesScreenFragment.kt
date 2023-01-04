@@ -18,6 +18,7 @@ import com.example.appsophos.R
 import com.example.appsophos.features.offices.domain.Office
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -55,7 +56,7 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
 
         viewModel.officeList.observe(viewLifecycleOwner, Observer {
             officesList = it.toSet().toList()
-            if(!officesList.isNullOrEmpty()){
+            if(officesList.isNotEmpty()){
                 setListOptions(officesList, requireView().findViewById(R.id.menuOffices))
             }
             else{
@@ -68,11 +69,11 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
         createFragment()
 
 
-      val selectedCity : AutoCompleteTextView = view.findViewById(R.id.atiCityLocation)
+        val selectedCity : AutoCompleteTextView = view.findViewById(R.id.atiCityLocation)
         selectedCity.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
             val cityValues: List<String> = selectedCity.adapter.getItem(position).toString().split(" (", ")")
-            cityName = cityValues[0].toString()
-            cityAddress = cityValues[1].toString()
+            cityName = cityValues[0]
+            cityAddress = cityValues[1]
             viewModel.getLocation(cityName, cityAddress)
         })
     }
@@ -85,28 +86,23 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
         enableLocation()
-        fun setMarker(coordinates : LatLng){
-            map = googleMap
-            map.addMarker(
-                MarkerOptions()
-                    .position(coordinates)
-                    .title("Marker"))
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 10F))
-        }
+        Log.d("Main", "will set current Loc ")
+        setCurrentLocation()
 
         val coordinates = LatLng(4.845659641374458, -75.67218748983034)
         setMarker(coordinates)
 
         viewModel.officeInfo.observe(viewLifecycleOwner, Observer {
             officeInformation = it
-            if(!officeInformation.Latitud.isNullOrEmpty() && !officeInformation.Longitud.isNullOrEmpty()) {
+            if(officeInformation.Latitud.isNotEmpty() && officeInformation.Longitud.isNotEmpty()) {
                 val lat = officeInformation.Latitud.toDouble()
                 val lng = officeInformation.Longitud.toDouble()
                 val coordinates = LatLng(lat, lng)
                 map.clear()
                 setMarker(coordinates)
-                val text = view?.findViewById<TextView>(R.id.tvMap)?.setText(officeInformation.Nombre)
+                view?.findViewById<TextView>(R.id.tvMap)?.setText(officeInformation.Nombre)
             }
             else{
                 val coordinates = LatLng(4.845659641374458, -75.67218748983034)
@@ -150,8 +146,10 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
         if (!::map.isInitialized) return
         if (isPermissionGranted()) {
             map.isMyLocationEnabled
+            Log.d("Main", "Location enabled")
         } else {
             requestLocationPermission()
+            Log.d("Main", "Location permission required")
         }
     }
 
@@ -164,6 +162,7 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
                 requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             )) {
+            Log.d("Main", "Location permission required")
             setDialog()
         } else {
             ActivityCompat.requestPermissions(
@@ -171,6 +170,7 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 REQUEST_CODE_LOCATION
             )
+            Log.d("Main", "Location permission required else")
         }
     }
 
@@ -189,17 +189,34 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-
     fun setDialog(){
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(resources.getText(R.string.alert_title_spanish))
             .setMessage(resources.getString(R.string.alert_text_spanish))
             .setNeutralButton(resources.getString(R.string.alert_close_spanish)) { dialog, which ->
+                findNavController().navigate(R.id.action_officesScreenFragment_to_menuScreenFragment)
             }
             .show()
     }
 
+    fun setMarker(coordinates : LatLng){
+        map.addMarker(
+            MarkerOptions()
+                .position(coordinates)
+                .title("Sophos Office"))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 10F))
+    }
 
+
+    private fun setCurrentLocation(){
+        var coordinate = LatLng(0.0, 0.0)
+        Log.d("Main", "set current Loc ")
+            map.setOnMyLocationChangeListener(OnMyLocationChangeListener { arg0 -> {}
+                coordinate = LatLng(arg0.latitude, arg0.longitude)
+            })
+        setMarker(coordinate)
+        Log.d("Main", "set current Loc ${coordinate}")
+    }
 }
 
 

@@ -5,11 +5,14 @@ import android.content.SharedPreferences
 
 class Preferences (context: Context) {
 
-        val APP_PREF_EMAIL = "emailPreferencesFile"
-        val EmailPreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_EMAIL, Context.MODE_PRIVATE)
+    val APP_PREF_EMAIL = "emailPreferencesFile"
+    val EmailPreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_EMAIL, Context.MODE_PRIVATE)
 
-        val APP_PREF_NAME = "NamePreferencesFile"
-        val NamePreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_NAME, Context.MODE_PRIVATE)
+    val APP_PREF_NAME = "NamePreferencesFile"
+    val NamePreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_NAME, Context.MODE_PRIVATE)
+
+    val APP_PREF_PASSWORD = "passwordPreferencesFile"
+    val PasswordPreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_PASSWORD, Context.MODE_PRIVATE)
 
 
     var emailPref: String?
@@ -19,4 +22,8 @@ class Preferences (context: Context) {
     var namePref: String?
         get() = NamePreferences.getString(APP_PREF_NAME, "" )
         set(value) = NamePreferences.edit().putString(APP_PREF_NAME, value).apply()
+
+    var passwordPref: String?
+        get() = PasswordPreferences.getString(APP_PREF_PASSWORD, "" )
+        set(value) = PasswordPreferences.edit().putString(APP_PREF_PASSWORD, value).apply()
 }
