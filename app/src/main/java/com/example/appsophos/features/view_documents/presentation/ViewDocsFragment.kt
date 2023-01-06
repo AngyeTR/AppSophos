@@ -1,6 +1,7 @@
 package com.example.appsophos.features.view_documents.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class ViewDocsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         email = prefs?.emailPref.toString()
+        viewModel.getDocumentsByEmail(email)
     }
 
     override fun onCreateView(
@@ -49,7 +51,7 @@ class ViewDocsFragment : Fragment() {
             findNavController().navigate(R.id.action_viewDocsFragment_to_imageViewFragment, bundle)
         }
 
-        viewModel.getDocumentsByEmail(email)
+
         viewModel.documentByEmailModel.observe(viewLifecycleOwner, Observer {
             documentList = it
             if(!documentList.isNullOrEmpty()){
@@ -77,6 +79,10 @@ class ViewDocsFragment : Fragment() {
                 }
                 R.id.offices_option -> {
                     findNavController().navigate(R.id.action_viewDocsFragment_to_officesScreenFragment)
+                    true
+                }
+                R.id.close_option -> {
+                    findNavController().navigate(R.id.action_viewDocsFragment_to_loginScreenFragment)
                     true
                 }
                 else -> false

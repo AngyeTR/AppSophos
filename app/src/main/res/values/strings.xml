@@ -41,5 +41,6 @@
     <string name="alert_title_spanish">Permiso inhabilitado</string>
     <string name="alert_text_spanish">Habilite el permiso de forma manual en las configuraciones de su dispositivo</string>
     <string name="alert_close_spanish">Cerrar</string>
+    <string name="close_session_Spanish">Cerrar sesión</string>
 
 </resources>

@@ -27,6 +27,7 @@ import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.appsophos.prefs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -105,6 +106,10 @@ class SendDocsFragment : Fragment() {
                 }
                 R.id.offices_option -> {
                     findNavController().navigate(R.id.action_sendDocsFragment_to_officesScreenFragment)
+                    true
+                }
+                R.id.close_option -> {
+                    findNavController().navigate(R.id.action_sendDocsFragment_to_loginScreenFragment)
                     true
                 }
                 else -> false

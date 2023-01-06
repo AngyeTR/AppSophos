@@ -10,7 +10,8 @@
         android:id="@+id/card"
         style="@style/AppTheme.EditCard"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:layout_margin="8dp">
         <LinearLayout
             android:orientation="vertical"
             style="@style/AppTheme.EditLayout"

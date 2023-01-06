@@ -70,6 +70,11 @@ class MenuScreenFragment: Fragment() {
                     findNavController().navigate(R.id.action_menuScreenFragment_to_officesScreenFragment)
                     true
                 }
+                R.id.close_option -> {
+                    findNavController().navigate(R.id.action_menuScreenFragment_to_loginScreenFragment)
+                    true
+                }
+
                 else -> false
             }
         }

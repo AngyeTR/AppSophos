@@ -12,7 +12,7 @@ class Preferences (context: Context) {
     val NamePreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_NAME, Context.MODE_PRIVATE)
 
     val APP_PREF_PASSWORD = "passwordPreferencesFile"
-    val PasswordPreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_PASSWORD, Context.MODE_PRIVATE)
+    var PasswordPreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_PASSWORD, Context.MODE_PRIVATE)
 
 
     var emailPref: String?

@@ -26,4 +26,9 @@
         android:title="@string/app_lang_english"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/close_option"
+        android:title="@string/close_session_Spanish"
+        app:showAsAction="never" />
+
 </menu>

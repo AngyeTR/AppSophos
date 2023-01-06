@@ -51,9 +51,7 @@ class ImageViewFragment : Fragment() {
 
         viewModel.documentbyIdRegistro.observe(viewLifecycleOwner, Observer {
             image = it.Adjunto.toString()
-            Log.d("Main", "Imagen captada en string ${image}")
             if (!image.isNullOrEmpty() && image?.contains("9j")!! && image.isNotBlank()) {
-                Log.d("Main", image)
                 //val imgConverted = convertString(image)
                 viewModel.convertString(image)
 

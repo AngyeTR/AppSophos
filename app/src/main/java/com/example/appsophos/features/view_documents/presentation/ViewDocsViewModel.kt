@@ -25,11 +25,11 @@ class ViewDocsViewModel : ViewModel() {
     val encodedString = MutableLiveData<Bitmap>()
 
     fun getDocumentsByEmail(email: String) {
+        val em = email
         viewModelScope.launch (Dispatchers.IO) {
             val documents = getRetrofit().fetchDocumentsByEmail(email)
             val documentList = documents.execute().body()!!.Items
             documentByEmailModel.postValue(documentList)
-            Log.d("Main", documentList.toString() )
         }
     }
     fun getDocumentsById(idRegistro: String) {

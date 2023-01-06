@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.appsophos.R
 import com.example.appsophos.features.offices.domain.Office
+import com.example.appsophos.prefs
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener
@@ -125,6 +126,10 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
                 }
                 R.id.view_option -> {
                     findNavController().navigate(R.id.action_officesScreenFragment_to_viewDocsFragment)
+                    true
+                }
+                R.id.close_option -> {
+                    findNavController().navigate(R.id.action_officesScreenFragment_to_loginScreenFragment)
                     true
                 }
                 else -> false
