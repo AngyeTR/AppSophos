@@ -10,8 +10,18 @@
 
     <string name="login_directions_spanish">Ingresa tus datos para acceder</string>
     <string name="login_email_spanish">Email</string>
-    <string name="login_password_spanish">Password</string>
+    <string name="login_password_spanish">Contraseña</string>
     <string name="login_fingerprint">Ingresar con huella</string>
+    <string name="login_error_spanish">Email o contraseña errados. Por favor verifique e intente nuevamente</string>
+    <string name="login_bio_unavailable_spanish">Autenticación Biométrica no disponible</string>
+    <string name="login_auth_error_spanish">Error de Autenticación:</string>
+    <string name="login_auth_error2_spanish">No fue posible validar huella</string>
+    <string name="login_bio_title_spanish">Autenticación Biométrica</string>
+    <string name="login_bio_subtitle_spanish">Utiliza el lector de huella para autenticar</string>
+    <string name="login_auth_first_spanish">Por favor inicia sesión  con tu usuario y contraseña. Luego selecciona la opción "Guardar Info"</string>
+    <string name="login_auth_saveInfo_title_spanish">Guardar Cuenta</string>
+    <string name="login_auth_saveInfo_subtitle_spanish">¿Desea guardar la información de su cuenta para su autenticación Biométrica en este dispositivo? </string>
+    <string name="login_auth_saveInfo_btn_spanish">  Guardar info</string>
 
     <string name="menu_welcome_spanish">Bienvenido</string>
     <string name="menu_message_spanish">Estas son las opciones que tenemos para ti</string>
@@ -19,6 +29,7 @@
     <string name="menu_view_document_spanish">Ver documentos</string>
     <string name="menu_offices_spanish">Oficinas</string>
     <string name="menu_icon">menu_icon</string>
+    <string name="close_session_Spanish">Cerrar sesión</string>
 
     <string name="send_documents_spanish">Enviar</string>
     <string name="send_name_spanish">Nombres</string>
@@ -26,21 +37,21 @@
     <string name="send_city_spanish">Ciudad</string>
     <string name="send_doc_spanish">Documento</string>
     <string name="send_spanish">Enviar</string>
-
-    <string name="view_card_title_example_spanish">17/08/22 - Incapacidad</string>
-    <string name="view_card_name_example_spanish">Jonatan Camilo Perez</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send_info_not_complete_spanish">Información Incompleta</string>
+    <string name="send_image_not_loaded_spanish">Imagen no seleccionada</string>
+    <string name="send_image_not_capture_spanish">Imagen no capturada</string>
+    <string name="send_img_unavailable_spanish">Imagen no disponible</string>
 
     <string name="map_example">map example</string>
     <string name="company_image">company image</string>
     <string name="document_type_spanish">Tipo de Documento</string>
     <string name="doc_number_spanish">Numero de Documento</string>
     <string name="add_photo_icon">add photo icon</string>
-    
-    
-    <string name="alert_title_spanish">Permiso inhabilitado</string>
-    <string name="alert_text_spanish">Habilite el permiso de forma manual en las configuraciones de su dispositivo</string>
+
+
     <string name="alert_close_spanish">Cerrar</string>
-    <string name="close_session_Spanish">Cerrar sesión</string>
+    <string name="alert_permission_title_spanish">Permiso no habilitado</string>
+    <string name="alert_permission_message_spanish">Habilite el permiso de forma manual en las configuraciones de su dispositivo</string>
+    <string name="office_closest_office">La oficina más cercana a tu ubicación es:</string>
 
 </resources>

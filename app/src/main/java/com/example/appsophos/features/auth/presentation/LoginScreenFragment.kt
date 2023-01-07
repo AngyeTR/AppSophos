@@ -39,7 +39,6 @@ class LoginScreenFragment  : Fragment() {
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
- //
     var canAuth: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,11 +59,12 @@ class LoginScreenFragment  : Fragment() {
         viewModel.userName.observe(viewLifecycleOwner, Observer {
            val  userName = it
             if (userName.isBlank() || userName.isNullOrEmpty()) {
-                Toast.makeText(activity?.applicationContext, "Login information is wrong, please check your user and password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity?.applicationContext,  R.string.login_error_spanish, Toast.LENGTH_SHORT).show()
             }
             else {
-                compareSession(userName)
-
+                if(canAuth){
+                    compareSession(userName)
+                }
                 prefs?.namePref = userName
                 prefs?.emailPref = email
                 findNavController().navigate(R.id.action_loginScreenFragment_to_menuScreenFragment)
@@ -82,7 +82,7 @@ class LoginScreenFragment  : Fragment() {
                 checkSharedPreferences()
             }
             else {
-                Toast.makeText(activity?.applicationContext, "Autenticación Biométrica no disponible", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity?.applicationContext, R.string.login_bio_unavailable_spanish, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -91,7 +91,7 @@ class LoginScreenFragment  : Fragment() {
         email = view?.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.tiLoginEmail)?.text.toString().lowercase()
         password = view?.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.tiLoginPassword)?.text.toString()
         if(email == "" || password == "") {
-            Toast.makeText(activity?.applicationContext, "Enter your email and password", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity?.applicationContext, R.string.login_directions_spanish, Toast.LENGTH_SHORT).show()
         }
         else {
             viewModel.loginFun(email, password)
@@ -106,26 +106,21 @@ class LoginScreenFragment  : Fragment() {
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
                     Toast.makeText(requireContext(),
-                        "Authentication error: $errString", Toast.LENGTH_SHORT)
+                        "${R.string.login_auth_error_spanish} $errString", Toast.LENGTH_SHORT)
                         .show()
                 }
 
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    Toast.makeText(requireContext(),
-                        "Authentication succeeded!", Toast.LENGTH_SHORT)
-                        .show()
                     loadUserFingerPrintPreferences()
                     viewModel.loginFun(email, password)
                 }
 
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    Toast.makeText(requireContext(), "Authentication failed",
+                    Toast.makeText(requireContext(), R.string.login_auth_error2_spanish,
                         Toast.LENGTH_SHORT)
                         .show()
-                    //TODO
-                    Log.d("Main", "Login Failed")
                 }
             })
     }
@@ -134,10 +129,9 @@ class LoginScreenFragment  : Fragment() {
         if(BiometricManager.from(requireContext()).canAuthenticate(
                 BIOMETRIC_STRONG or DEVICE_CREDENTIAL) == BiometricManager.BIOMETRIC_SUCCESS){
             canAuth = true
-            Log.d("Main", "canAuth: ${canAuth}")
             promptInfo = BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Autenticación Biométrica")
-                .setSubtitle("Autenticate a través del sensor Biométrico")
+                .setTitle(R.string.login_bio_title_spanish.toString())
+                .setSubtitle(R.string.login_bio_subtitle_spanish.toString())
                 .setAllowedAuthenticators(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)
                 .build()
         }
@@ -147,7 +141,11 @@ class LoginScreenFragment  : Fragment() {
         email = prefs?.emailPref.toString()
         password = prefs?.passwordPref.toString()
         if (email == "" || password == "") {
-            Toast.makeText(activity?.applicationContext, "Por favor ingrese su usuario y contraseña y guarde La información en su dispositivo", Toast.LENGTH_SHORT).show()
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.login_bio_title_spanish)
+                .setMessage(R.string.login_auth_first_spanish)
+                .setNeutralButton(resources.getString(R.string.alert_close_spanish)) { dialog, which -> prefs?.namePref=""}
+                .show()
         }
         else {
             fingerPrintAuth()
@@ -161,8 +159,6 @@ class LoginScreenFragment  : Fragment() {
     }
 
     fun    compareSession(userName: String){
-        Log.d("Main", "userName ${userName}")
-        Log.d("Main", " pref ${prefs?.namePref.toString()}")
         if (!prefs?.namePref.toString().equals(userName)){
             setDialog()
         }
@@ -170,15 +166,11 @@ class LoginScreenFragment  : Fragment() {
 
     fun setDialog(){
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Registrar Cuenta")
-            .setMessage("¿Desea guardar la información de su cuenta en el dispositivo?")
+            .setTitle(R.string.login_auth_saveInfo_title_spanish)
+            .setMessage(R.string.login_auth_saveInfo_subtitle_spanish)
             .setNeutralButton(resources.getString(R.string.alert_close_spanish)) { dialog, which ->
-                Log.d("Main", "No")
-            }.setPositiveButton("Guardar"){
-                    dialog, which ->
-                prefs?.passwordPref = password
-                Log.d("Main", "pass guardada ${prefs?.passwordPref}")
-            }
+            }.setPositiveButton(R.string.login_auth_saveInfo_btn_spanish){ dialog, which ->
+                prefs?.passwordPref = password }
             .show()
     }
 }

@@ -60,7 +60,7 @@ class ImageViewFragment : Fragment() {
             }
             else {
                 imageHolder.setImageResource(R.drawable.ic_baseline_image_not_supported_24)
-                textHolder.setText("Image Not Available")
+                textHolder.setText(R.string.send_img_unavailable_spanish)
 
             }
         })

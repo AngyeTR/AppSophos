@@ -43,9 +43,7 @@ class SendDocsFragment : Fragment() {
     var  attachment: String = ""
 
     private val PERMISSION_CAMARA: Int = 100
-    private val CAMARA_REQUEST_CODE: Int = 101
     private val PERMISSION_EXTERNAL_STORAGE: Int = 100
-    private val IMAGE_REQUEST_CODE: Int = 102
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,7 +90,7 @@ class SendDocsFragment : Fragment() {
         }
     }
 
-    fun setAppBar(){
+    private fun setAppBar(){
         val appBar = requireView().findViewById<MaterialToolbar>(R.id.topAppBar)
         appBar.setNavigationOnClickListener{
             findNavController().navigate(R.id.action_sendDocsFragment_to_menuScreenFragment)
@@ -117,7 +115,7 @@ class SendDocsFragment : Fragment() {
         }
     }
 
-    fun setDropDownMenus(){
+    private fun setDropDownMenus(){
         val menuDocTypes = listOf("CC", "TI", "PA", "CE")
         setListOptions(menuDocTypes, requireView().findViewById(R.id.menuDocType))
 
@@ -167,7 +165,7 @@ class SendDocsFragment : Fragment() {
             findNavController().navigate(R.id.action_sendDocsFragment_to_menuScreenFragment)
         }
         else {
-            Toast.makeText(activity?.applicationContext, "Information is not complete", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity?.applicationContext, R.string.send_info_not_complete_spanish, Toast.LENGTH_SHORT).show()
             infoIsComplete = true
         }
     }
@@ -180,7 +178,8 @@ class SendDocsFragment : Fragment() {
             viewModel.convertUriToBitmap(source)
         }
         else{
-            Log.d("Main", "Imagen no seleccionada")
+            Toast.makeText(activity?.applicationContext, R.string.send_image_not_loaded_spanish, Toast.LENGTH_SHORT).show()
+            infoIsComplete = true
         }
     }
 
@@ -194,7 +193,8 @@ class SendDocsFragment : Fragment() {
                 }
             }
             else {
-                Log.d("Main", "Imagen no tomada")
+                Toast.makeText(activity?.applicationContext, R.string.send_image_not_capture_spanish, Toast.LENGTH_SHORT).show()
+                infoIsComplete = true
             }
         }
 
@@ -265,10 +265,9 @@ class SendDocsFragment : Fragment() {
 
     fun setDialog(){
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(resources.getText(R.string.alert_title_spanish))
-            .setMessage(resources.getString(R.string.alert_text_spanish))
-            .setNeutralButton(resources.getString(R.string.alert_close_spanish)) { dialog, which ->
-                Log.d("Main", "Ok")
+            .setTitle(R.string.alert_permission_title_spanish)
+            .setMessage(R.string.alert_permission_message_spanish)
+            .setNeutralButton(R.string.alert_close_spanish) { dialog, which ->
             }
             .show()
     }
