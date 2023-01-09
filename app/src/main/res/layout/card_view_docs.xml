@@ -4,25 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="?attr/background">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         style="@style/AppTheme.EditCard"
         android:clickable="true"
         android:focusable="true"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+      >
         <LinearLayout
             android:orientation="vertical"
             style="@style/AppTheme.EditLayout"
+            android:background="?attr/cardBackgroundColor"
             >
 
             <TextView
                 android:id="@+id/tvViewCardTitle"
+                android:textColor="?attr/colorPrimary"
                 style="@style/AppTheme.EditTextStyleRegularMedium" />
 
             <TextView
                 android:id="@+id/tvViewCardUser"
+                android:textColor="?attr/colorPrimary"
                 style="@style/AppTheme.EditTextStyleRegularMedium"
                 />
         </LinearLayout>

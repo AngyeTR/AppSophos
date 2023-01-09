@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.auth.presentation.LoginScreenFragment">
+    tools:context=".features.auth.presentation.LoginScreenFragment"
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/AppTheme.EditLayout"
         android:padding="24dp"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:background="?attr/background"
+        >
 
         <ImageView
             android:id="@+id/ivLoginLogo"
@@ -19,7 +22,7 @@
             android:layout_margin="20dp"
             android:contentDescription="@string/app_logo"
             android:src="@drawable/sophos_logo"
-            android:tint="@color/design_default_color_primary"
+            android:tint="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,13 +30,14 @@
 
         <TextView
             android:id="@+id/tvLoginMessage"
+            android:gravity="center"
             style="@style/AppTheme.EditTextStyleRegularMedium"
             android:layout_width="180dp"
             android:layout_margin="20dp"
             android:text="@string/login_directions_spanish"
             android:textAlignment="center"
-            android:textColor="@color/design_default_color_primary"
             app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="?attr/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLoginLogo" />
 
@@ -47,12 +51,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvLoginMessage"
-            app:startIconDrawable="@drawable/email">
+            app:startIconDrawable="@drawable/email"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiLoginEmail"
                 style="@style/AppTheme.EditTextStyleRegularMedium"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,6 +88,7 @@
             android:layout_width="match_parent"
             android:layout_marginTop="40dp"
             android:text="@string/app_login_spanish"
+            android:textColor="?attr/colorPrimaryVariant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tfLoginPassword" />

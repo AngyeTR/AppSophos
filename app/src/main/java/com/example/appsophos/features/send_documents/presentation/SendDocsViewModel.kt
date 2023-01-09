@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appsophos.core.APIClient.getRetrofit
+import com.example.appsophos.core.services.remote.ApiService
 import com.example.appsophos.features.send_documents.domain.DocumentAdd
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,9 +18,9 @@ import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import javax.inject.Inject
 
-//@HiltViewModel
-//class SendDocsViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
-class SendDocsViewModel : ViewModel() {
+@HiltViewModel
+class SendDocsViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
+//class SendDocsViewModel : ViewModel() {
     lateinit var document: DocumentAdd
     val officeList = MutableLiveData<List<String>>()
     val encodedImg= MutableLiveData<String>()
@@ -29,13 +30,13 @@ class SendDocsViewModel : ViewModel() {
 
     fun postDocument(document: DocumentAdd) {
         viewModelScope.launch (Dispatchers.IO) {
-            val documents = getRetrofit().addDocument(document)
+            val documents = api.addDocument(document)
         }
     }
 
     fun getOffices() {
         viewModelScope.launch (Dispatchers.IO) {
-            val offices = getRetrofit().getOfficesInfo()
+            val offices = api.getOfficesInfo()
             val body = offices.execute().body()!!.Items
             val officeNames = body.map { body -> body.Ciudad.toString() }
             officeList.postValue(officeNames)

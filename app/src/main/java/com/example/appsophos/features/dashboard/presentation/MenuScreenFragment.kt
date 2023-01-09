@@ -1,12 +1,19 @@
 package com.example.appsophos.features.dashboard.presentation
 
+import android.content.ClipData
+import android.content.ClipData.Item
 import android.os.Bundle
+import android.provider.DocumentsContract.Root
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.appsophos.MainActivity
 import com.example.appsophos.R
 import com.example.appsophos.SharedApp.Companion.prefs
 
@@ -14,8 +21,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-//@AndroidEntryPoint
-//@Inject constructor()
 class MenuScreenFragment: Fragment() {
     private lateinit var userName : String
 
@@ -36,7 +41,6 @@ class MenuScreenFragment: Fragment() {
         val btnSendDocs = view.findViewById<Button>(R.id.ob_send)
         val btnViewDocs = view.findViewById<Button>(R.id.ob_view)
         val btnOffices = view.findViewById<Button>(R.id.ob_office)
-
         setAppBar()
 
         btnSendDocs.setOnClickListener {
@@ -54,7 +58,6 @@ class MenuScreenFragment: Fragment() {
 
     fun setAppBar(){
         val appBar = view?.findViewById<MaterialToolbar>(R.id.topAppBar)
-
         appBar?.title = userName
         appBar?.setOnMenuItemClickListener{ menuItem ->
             when (menuItem.itemId) {
@@ -68,6 +71,18 @@ class MenuScreenFragment: Fragment() {
                 }
                 R.id.offices_option -> {
                     findNavController().navigate(R.id.action_menuScreenFragment_to_officesScreenFragment)
+                    true
+                }
+                R.id.mode_option -> {
+                    var darkMode = prefs?.modePref
+                    if(darkMode == true){
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        prefs?.modePref = false
+                    }
+                    else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        prefs?.modePref = true
+                    }
                     true
                 }
                 R.id.close_option -> {

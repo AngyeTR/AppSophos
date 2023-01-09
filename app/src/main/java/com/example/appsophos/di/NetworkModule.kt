@@ -7,26 +7,27 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
-/*
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit{
+    fun provideRetrofit(): ApiService {
         return Retrofit.Builder()
             .baseUrl("https://6w33tkx4f9.execute-api.us-east-1.amazonaws.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(ApiService::class.java)
     }
 
-    @Singleton
+  /*  @Singleton
     @Provides
     fun provideApiClient(retrofit: Retrofit) : ApiService {
         return retrofit.create(ApiService::class.java)
-    }
+    }*/
 }
-*/

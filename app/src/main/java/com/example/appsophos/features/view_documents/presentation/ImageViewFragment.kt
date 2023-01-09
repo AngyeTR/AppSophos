@@ -19,7 +19,7 @@ import com.example.appsophos.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class ImageViewFragment : Fragment() {
     val viewModel: ViewDocsViewModel by viewModels()
     lateinit var backButton: Button

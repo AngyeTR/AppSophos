@@ -14,6 +14,9 @@ class Preferences (context: Context) {
     val APP_PREF_PASSWORD = "passwordPreferencesFile"
     var PasswordPreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_PASSWORD, Context.MODE_PRIVATE)
 
+    val APP_PREF_MODE = "modePreferencesFile"
+    var ModePreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_MODE, Context.MODE_PRIVATE)
+
 
     var emailPref: String?
             get() = EmailPreferences.getString(APP_PREF_EMAIL, "" )
@@ -26,4 +29,8 @@ class Preferences (context: Context) {
     var passwordPref: String?
         get() = PasswordPreferences.getString(APP_PREF_PASSWORD, "" )
         set(value) = PasswordPreferences.edit().putString(APP_PREF_PASSWORD, value).apply()
+
+    var modePref: Boolean
+        get() = ModePreferences.getBoolean(APP_PREF_MODE, false )
+        set(value) = ModePreferences.edit().putBoolean(APP_PREF_MODE, value).apply()
 }

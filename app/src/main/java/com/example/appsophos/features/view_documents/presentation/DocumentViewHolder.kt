@@ -44,7 +44,7 @@ class DocumentViewHolder(view: View,
     }
 
     fun formatDate(preDate: String): String{
-      var date = preDate
+        var date = preDate
         try {
             val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
             formatter.timeZone = TimeZone.getTimeZone("UTC")

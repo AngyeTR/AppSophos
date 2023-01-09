@@ -8,7 +8,7 @@ val prefs: Preferences by lazy {
     SharedApp.prefs!!
 }
 
-//@HiltAndroidApp
+@HiltAndroidApp
 class SharedApp : Application() {
 
     companion object {

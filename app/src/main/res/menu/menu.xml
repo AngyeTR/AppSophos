@@ -19,12 +19,9 @@
         app:showAsAction="never" />
 
     <item
-
         android:id="@+id/mode_option"
-        android:title="@string/app_dark_mode_spanish"
-        app:actionLayout="@layout/switch_item"
-        app:showAsAction="collapseActionView"
-        />
+        app:showAsAction="never"
+        android:title="?attr/title" />
     <item
         android:id="@+id/lang_option"
         android:title="@string/app_lang_english"

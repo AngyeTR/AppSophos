@@ -10,28 +10,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.appsophos.MainActivity
 import com.example.appsophos.R
+import com.example.appsophos.SharedApp
 import com.example.appsophos.features.offices.domain.Office
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 
-//@AndroidEntryPoint
-//@Inject constructor()
+@AndroidEntryPoint
 class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
     val viewModel: OfficesViewModel by viewModels()
     private lateinit var officesList: List<String>
@@ -41,6 +41,7 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
     lateinit var map : GoogleMap
     var cityName: String = ""
     var cityAddress: String = ""
+    private lateinit var list : List<Office>
 
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +52,10 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_offices_screen, container, false)
+        val view = inflater.inflate(R.layout.fragment_offices_screen, container, false)
+
+        createFragment()
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,7 +73,6 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
         })
 
         setAppBar()
-        createFragment()
 
         val selectedCity : AutoCompleteTextView = view.findViewById(R.id.atiCityLocation)
         selectedCity.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
@@ -122,6 +124,18 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
                 }
                 R.id.view_option -> {
                     findNavController().navigate(R.id.action_officesScreenFragment_to_viewDocsFragment)
+                    true
+                }
+                R.id.mode_option -> {
+                    var darkMode = SharedApp.prefs?.modePref
+                    if(darkMode == true){
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        SharedApp.prefs?.modePref = false
+                    }
+                    else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        SharedApp.prefs?.modePref = true
+                    }
                     true
                 }
                 R.id.close_option -> {
@@ -207,30 +221,30 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     private fun setCurrentLocation(){
         lateinit var closestOffice: String
-        lateinit var list : List<Office>
+
         var coordinate = LatLng(0.0, 0.0)
         viewModel.officeCoordinates.observe(viewLifecycleOwner, Observer {
             list = it
-        })
 
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                if (location != null) {
-                    coordinate = LatLng(location.latitude, location.longitude)
-                    Log.d("Main", coordinate.toString())
-                    setMarker(coordinate)
-                    viewModel.findClosestOffice(list, location.latitude, location.longitude)
-                    viewModel.closestLocation.observe(viewLifecycleOwner, Observer {
-                      closestOffice = it
-                        val text = "${resources.getText(R.string.office_closest_office)} ${closestOffice}"
-                        view?.findViewById<TextView>(R.id.tvMap)?.setText(text)
-                    })
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location : Location? ->
+                    if (location != null) {
+                        coordinate = LatLng(location.latitude, location.longitude)
+                        Log.d("Main", coordinate.toString())
+                        setMarker(coordinate)
+                        viewModel.findClosestOffice(list, location.latitude, location.longitude)
+                        viewModel.closestLocation.observe(viewLifecycleOwner, Observer {
+                            closestOffice = it
+                            val text = "${resources.getText(R.string.office_closest_office)} ${closestOffice}"
+                            view?.findViewById<TextView>(R.id.tvMap)?.setText(text)
+                        })
+                    }
+                    else{
+                        setMarker(coordinate)
+                        closestOffice = "None"
+                    }
                 }
-                else{
-                    setMarker(coordinate)
-                    closestOffice = "None"
-                }
-            }
+        })
     }
 }
 

@@ -3,15 +3,22 @@
     <style name="Theme.AppSophos" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/dark_background</item>
-        <item name="colorOnPrimary">@color/dark_background</item>
+        <item name="colorPrimaryVariant">@color/purple</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnBackground">@color/dark_background</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/blue</item>
-        <item name="colorSecondaryVariant">@color/pink</item>
-        <item name="colorOnSecondary">@color/green</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/design_default_color_primary</item>
-        <item name="appBarLayoutStyle">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">@color/dark_background</item>
+        <item name="appBarLayoutStyle">@color/dark_background</item>
         <!-- Customize your theme here. -->
+        <item name="background">@color/dark_background</item>
+        <item name="cardBackgroundColor">@color/backgroundTransparent</item>
+        <item name="colorTertiary">#50FE1191</item>
+        <item name="colorTertiaryContainer">#504500FF</item>
+        <item name="colorOnTertiary">#5005667C</item>
+        <item name="title">@string/app_light_mode_spanish</item>
     </style>
 </resources>

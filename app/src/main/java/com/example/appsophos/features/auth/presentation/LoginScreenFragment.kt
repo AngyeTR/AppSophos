@@ -2,10 +2,6 @@ package com.example.appsophos.features.auth.presentation
 
 import android.content.Intent
 import android.os.Bundle
-
-import android.os.Build
-import android.preference.PreferenceManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,14 +19,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.Executor
 import javax.inject.Inject
 import android.provider.Settings
+import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
+import com.example.appsophos.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class LoginScreenFragment  : Fragment() {
 
     val viewModel: LoginViewModel by viewModels()
@@ -44,6 +43,7 @@ class LoginScreenFragment  : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkBiometricAvailability()
+
     }
 
     override fun onCreateView(
@@ -130,8 +130,8 @@ class LoginScreenFragment  : Fragment() {
                 BIOMETRIC_STRONG or DEVICE_CREDENTIAL) == BiometricManager.BIOMETRIC_SUCCESS){
             canAuth = true
             promptInfo = BiometricPrompt.PromptInfo.Builder()
-                .setTitle(R.string.login_bio_title_spanish.toString())
-                .setSubtitle(R.string.login_bio_subtitle_spanish.toString())
+                .setTitle(getString(R.string.login_bio_title_spanish))
+                .setSubtitle(getString(R.string.login_bio_subtitle_spanish))
                 .setAllowedAuthenticators(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)
                 .build()
         }
@@ -173,4 +173,14 @@ class LoginScreenFragment  : Fragment() {
                 prefs?.passwordPref = password }
             .show()
     }
+    private fun setTheme(){
+        var darkMode = prefs?.modePref
+        if(darkMode == true){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+    }
+
 }

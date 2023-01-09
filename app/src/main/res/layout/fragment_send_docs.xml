@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
         style="@style/AppTheme.EditLayout"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="?attr/background"
         >
 
         <com.google.android.material.appbar.AppBarLayout
@@ -16,13 +17,15 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
                 style="@style/Widget.MaterialComponents.Toolbar.Surface"
-                app:titleTextColor="@color/design_default_color_primary"
-                app:navigationIconTint="@color/design_default_color_primary"
+                app:titleTextColor="?attr/colorPrimary"
+                android:backgroundTint="?attr/background"
+                app:navigationIconTint="?attr/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/app_back_spanish"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:menu="@menu/menu"
+
                 />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -34,6 +37,7 @@
         style="@style/AppTheme.EditTextStyleBoldMedium"
         android:text="@string/menu_send_document_spanish"
         android:textAlignment="center"
+        android:textColor="?attr/colorPrimary"
         />
 
     <androidx.core.widget.NestedScrollView
@@ -59,7 +63,7 @@
                 android:contentDescription="@string/add_photo_icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:background="@color/notColor"
                 />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -67,7 +71,6 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor="@color/white"
                 >
 
                 <AutoCompleteTextView
@@ -76,6 +79,7 @@
                     android:id="@+id/actvDocType"
                     style="@style/AppTheme.EditTextStyleRegularMedium"
                     android:inputType=""
+
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -89,7 +93,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiDocNumber"
                     style="@style/AppTheme.EditTextStyleRegularMedium"
-                    android:layout_height="60dp"                />
+                    android:layout_height="60dp"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -167,6 +172,8 @@
                 style="@style/EditButton"
                 android:text="@string/send_doc_spanish"
                 app:icon="@drawable/ic_baseline_file_upload_24"
+                android:backgroundTint="@color/pink"
+                android:textColor="@color/white"
                 />
 
             <Button
@@ -174,12 +181,15 @@
                 style="@style/EditButton"
                 android:layout_width="320dp"
                 android:text="@string/send_spanish"
+                android:backgroundTint="@color/pink"
+                android:textColor="@color/white"
                 android:drawableStart="@drawable/ic_baseline_file_upload_24"
                 />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ivEjemplo"/>
+                android:id="@+id/ivEjemplo"
+                />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

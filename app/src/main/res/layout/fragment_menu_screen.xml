@@ -4,24 +4,27 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         style="@style/AppTheme.EditLayout"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="?attr/background">
 
         <com.google.android.material.appbar.AppBarLayout
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/tp_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="0dp"
             >
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Surface"
+                app:titleTextColor="?attr/colorPrimary"
+                android:backgroundTint="?attr/background"
+                app:navigationIconTint="?attr/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="Camilo"
                 app:menu="@menu/menu"
-                style="@style/Widget.MaterialComponents.Toolbar.Surface"
-                app:titleTextColor="@color/design_default_color_primary"
-                app:navigationIconTint="@color/design_default_color_primary"
-                />
+                 />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,12 +35,14 @@
             android:src="@drawable/company_image_l"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tp_bar" />
+            app:layout_constraintTop_toBottomOf="@id/tp_bar"
+            android:layout_margin="0dp"/>
 
         <TextView
             android:id="@+id/tvWelcome"
             style="@style/AppTheme.EditTextStyleBoldLarge"
             android:text="@string/menu_welcome_spanish"
+           android:background="@color/notColor"
             app:layout_constraintStart_toStartOf="@+id/company_image"
             app:layout_constraintTop_toTopOf="@+id/company_image" />
 
@@ -49,6 +54,7 @@
             app:layout_constraintStart_toStartOf="@+id/company_image"
             android:paddingStart="50dp"
             android:textColor="@color/white"
+            android:background="@color/notColor"
             android:text="@string/menu_message_spanish"
             />
         <androidx.core.widget.NestedScrollView
@@ -69,27 +75,30 @@
                 >
                 <RelativeLayout
                     style="@style/AppTheme.EditLayout"
+                    android:background="?attr/colorTertiary"
                     >
                     <TextView
                         android:id="@+id/tvSendCard"
                         style="@style/AppTheme.EditTextStyleBoldMedium"
-                        android:textColor="@color/pink"
                         android:text="@string/menu_send_document_spanish"
-                        app:drawableStartCompat="@drawable/ic_baseline_insert_drive_file_24" />
+                        app:drawableStartCompat="@drawable/ic_baseline_insert_drive_file_24"
+                        android:drawableTint="?attr/colorSecondary"
+                        android:textColor="?attr/colorSecondary"/>
 
                     <Button
                         android:layout_below="@+id/tvSendCard"
                         android:id="@+id/ob_send"
                         android:layout_margin="8dp"
+                        style="?attr/materialButtonOutlinedStyle"
                         android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
                         android:textSize="@dimen/text_size_small"
                         android:layout_width="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_height="wrap_content"
-                        style="?attr/materialButtonOutlinedStyle"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/app_login_spanish"
-                        android:textColor="@color/pink"
+                        android:textColor="?attr/colorSecondary"
+                        android:drawableTint="?attr/colorSecondary"
                         />
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -101,6 +110,7 @@
                 >
                 <RelativeLayout
                     style="@style/AppTheme.EditLayout"
+                    android:background="?attr/colorTertiaryContainer"
                     >
 
                     <TextView
@@ -108,7 +118,8 @@
                         style="@style/AppTheme.EditTextStyleBoldMedium"
                         android:drawableStart="@drawable/ic_baseline_content_paste_search_24"
                         android:text="@string/menu_view_document_spanish"
-                        android:textColor="@color/blue"
+                        android:textColor="?attr/colorSecondaryVariant"
+                        android:drawableTint="?attr/colorSecondaryVariant"
                         />
 
                     <Button
@@ -123,7 +134,9 @@
                         style="?attr/materialButtonOutlinedStyle"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/app_login_spanish"
-                        android:textColor="@color/blue"
+                        android:textColor="?attr/colorSecondaryVariant"
+                        android:drawableTint="?attr/colorSecondaryVariant"
+
                         />
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -134,6 +147,7 @@
                 >
                 <RelativeLayout
                     style="@style/AppTheme.EditLayout"
+                    android:background="?attr/colorOnTertiary"
                     >
 
                     <TextView
@@ -141,7 +155,8 @@
                         style="@style/AppTheme.EditTextStyleBoldMedium"
                         android:drawableStart="@drawable/ic_baseline_location_on_24"
                         android:text="@string/menu_offices_spanish"
-                        android:textColor="@color/green"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:drawableTint="?attr/colorOnSecondary"
                         />
 
                     <Button
@@ -156,7 +171,8 @@
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/app_login_spanish"
                         android:layout_margin="8dp"
-                        android:textColor="@color/green"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:drawableTint="?attr/colorOnSecondary"
                         />
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>

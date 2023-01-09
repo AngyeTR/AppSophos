@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         style="@style/AppTheme.EditLayout"
         android:orientation="vertical"
+        android:background="?attr/background"
         >
 
         <com.google.android.material.appbar.AppBarLayout
@@ -14,15 +15,17 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
+                android:layout_marginBottom="0dp"
+                app:titleTextColor="?attr/colorPrimary"
+                android:backgroundTint="?attr/background"
+                app:navigationIconTint="?attr/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/app_back_spanish"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:menu="@menu/menu"
                 style="@style/Widget.MaterialComponents.Toolbar.Surface"
-                app:titleTextColor="@color/design_default_color_primary"
-                app:navigationIconTint="@color/design_default_color_primary"
-                />
+                 />
 
         </com.google.android.material.appbar.AppBarLayout>
     <TextView
@@ -31,7 +34,9 @@
         android:id="@+id/tvViewDocs"
         style="@style/AppTheme.EditTextStyleBoldMedium"
         android:text="@string/menu_view_document_spanish"
-        android:textAlignment="center"
+        android:textColor="?attr/colorPrimary"
+        android:layout_margin="0dp"
+        android:gravity="center"
         />
 
 

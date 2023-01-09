@@ -4,15 +4,19 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appsophos.core.APIClient.getRetrofit
+import com.example.appsophos.core.services.remote.ApiService
 import com.example.appsophos.features.offices.domain.Office
 import com.example.appsophos.features.send_documents.domain.DocumentAdd
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class OfficesViewModel : ViewModel() {
+//class OfficesViewModel : ViewModel() {
+@HiltViewModel
+class OfficesViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
 
     lateinit var document: DocumentAdd
     val officeList = MutableLiveData<List<String>>()
@@ -22,7 +26,7 @@ class OfficesViewModel : ViewModel() {
 
     fun getOffices() {
         viewModelScope.launch(Dispatchers.IO) {
-            val offices = getRetrofit().getOfficesInfo()
+            val offices = api.getOfficesInfo()
             val body = offices.execute().body()!!.Items
             val officeNames = body.map { body -> "${body.Ciudad} (${body.Nombre})" }
             officeList.postValue(officeNames)
@@ -32,7 +36,7 @@ class OfficesViewModel : ViewModel() {
 
     fun getLocation(cityName:String, cityAddress: String){
         viewModelScope.launch(Dispatchers.IO) {
-            val offices = getRetrofit().getOfficesInfo()
+            val offices = api.getOfficesInfo()
             val body = offices.execute().body()!!.Items
             val info = body.filter { it.Ciudad.toString().equals(cityName) && it.Nombre.toString().equals(cityAddress)}
             val office = info[0]

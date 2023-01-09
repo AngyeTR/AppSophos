@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,7 +18,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class ViewDocsFragment : Fragment() {
    val viewModel: ViewDocsViewModel by viewModels()
     private lateinit var adapter: DocumentAdapter
@@ -79,6 +80,18 @@ class ViewDocsFragment : Fragment() {
                 }
                 R.id.offices_option -> {
                     findNavController().navigate(R.id.action_viewDocsFragment_to_officesScreenFragment)
+                    true
+                }
+                R.id.mode_option -> {
+                    var darkMode = prefs?.modePref
+                    if(darkMode == true){
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        prefs?.modePref = false
+                    }
+                    else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        prefs?.modePref = true
+                    }
                     true
                 }
                 R.id.close_option -> {

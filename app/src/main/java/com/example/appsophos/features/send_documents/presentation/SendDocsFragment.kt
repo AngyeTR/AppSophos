@@ -25,15 +25,17 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.textfield.TextInputLayout
 import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.appsophos.SharedApp
 import com.example.appsophos.prefs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class SendDocsFragment : Fragment() {
     val viewModel : SendDocsViewModel by viewModels()
     private lateinit var textField: TextInputLayout
@@ -104,6 +106,18 @@ class SendDocsFragment : Fragment() {
                 }
                 R.id.offices_option -> {
                     findNavController().navigate(R.id.action_sendDocsFragment_to_officesScreenFragment)
+                    true
+                }
+                R.id.mode_option -> {
+                    var darkMode = SharedApp.prefs?.modePref
+                    if(darkMode == true){
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        SharedApp.prefs?.modePref = false
+                    }
+                    else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        SharedApp.prefs?.modePref = true
+                    }
                     true
                 }
                 R.id.close_option -> {
