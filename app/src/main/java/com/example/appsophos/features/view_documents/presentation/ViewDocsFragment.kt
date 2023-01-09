@@ -1,10 +1,13 @@
 package com.example.appsophos.features.view_documents.presentation
 
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,10 +15,12 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appsophos.R
+import com.example.appsophos.SharedApp
 import com.example.appsophos.SharedApp.Companion.prefs
 import com.example.appsophos.features.view_documents.domain.Document
 import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -41,6 +46,7 @@ class ViewDocsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_view_docs, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setAppBar()
@@ -51,7 +57,6 @@ class ViewDocsFragment : Fragment() {
             bundle.putString("idRegister", idRegister)
             findNavController().navigate(R.id.action_viewDocsFragment_to_imageViewFragment, bundle)
         }
-
 
         viewModel.documentByEmailModel.observe(viewLifecycleOwner, Observer {
             documentList = it
@@ -66,6 +71,7 @@ class ViewDocsFragment : Fragment() {
         })
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun setAppBar(){
         val appBar = view?.findViewById<MaterialToolbar>(R.id.topAppBar)
         appBar?.setNavigationOnClickListener {
@@ -94,6 +100,16 @@ class ViewDocsFragment : Fragment() {
                     }
                     true
                 }
+                R.id.lang_option -> {
+                    var lang = SharedApp.prefs?.langPref
+                    if (lang.equals("es")) {
+                        setLang("en")
+                    } else {
+                        setLang("es")
+                    }
+                    findNavController().navigate(R.id.action_viewDocsFragment_self)
+                    true
+                }
                 R.id.close_option -> {
                     findNavController().navigate(R.id.action_viewDocsFragment_to_loginScreenFragment)
                     true
@@ -101,6 +117,15 @@ class ViewDocsFragment : Fragment() {
                 else -> false
             }
         }
+    }
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun setLang(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        resources.updateConfiguration(config, requireContext().resources.displayMetrics)
+        prefs?.langPref = lang
     }
 }
 

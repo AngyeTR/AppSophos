@@ -3,13 +3,16 @@ package com.example.appsophos.features.offices.presentation
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -17,10 +20,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.appsophos.MainActivity
 import com.example.appsophos.R
 import com.example.appsophos.SharedApp
 import com.example.appsophos.features.offices.domain.Office
+import com.example.appsophos.prefs
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
@@ -30,6 +33,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
@@ -58,6 +62,7 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
         return view
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -110,6 +115,7 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
         })
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun setAppBar(){
         appBar = requireView().findViewById(R.id.topAppBar)
         appBar.setNavigationOnClickListener{
@@ -136,6 +142,16 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         SharedApp.prefs?.modePref = true
                     }
+                    true
+                }
+                R.id.lang_option -> {
+                    var lang = SharedApp.prefs?.langPref
+                    if (lang.equals("es")) {
+                        setLang("en")
+                    } else {
+                        setLang("es")
+                    }
+                    findNavController().navigate(R.id.action_officesScreenFragment_self)
                     true
                 }
                 R.id.close_option -> {
@@ -245,6 +261,15 @@ class OfficesScreenFragment : Fragment(), OnMapReadyCallback {
                     }
                 }
         })
+    }
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun setLang(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        resources.updateConfiguration(config, requireContext().resources.displayMetrics)
+        prefs?.langPref = lang
     }
 }
 

@@ -17,6 +17,8 @@ class Preferences (context: Context) {
     val APP_PREF_MODE = "modePreferencesFile"
     var ModePreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_MODE, Context.MODE_PRIVATE)
 
+    val APP_PREF_LANG = "langPreferencesFile"
+    var LangPreferences : SharedPreferences = context.getSharedPreferences(APP_PREF_LANG, Context.MODE_PRIVATE)
 
     var emailPref: String?
             get() = EmailPreferences.getString(APP_PREF_EMAIL, "" )
@@ -33,4 +35,8 @@ class Preferences (context: Context) {
     var modePref: Boolean
         get() = ModePreferences.getBoolean(APP_PREF_MODE, false )
         set(value) = ModePreferences.edit().putBoolean(APP_PREF_MODE, value).apply()
+
+    var langPref: String?
+        get() = LangPreferences.getString(APP_PREF_LANG, "es" )
+        set(value) = LangPreferences.edit().putString(APP_PREF_LANG, value).apply()
 }

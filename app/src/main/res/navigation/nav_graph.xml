@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_menuScreenFragment_to_loginScreenFragment"
             app:destination="@id/loginScreenFragment" />
+        <action
+            android:id="@+id/action_menuScreenFragment_self"
+            app:destination="@id/menuScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/officesScreenFragment"
@@ -54,6 +57,9 @@
         <action
             android:id="@+id/action_officesScreenFragment_to_loginScreenFragment"
             app:destination="@id/loginScreenFragment" />
+        <action
+            android:id="@+id/action_officesScreenFragment_self"
+            app:destination="@id/officesScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/sendDocsFragment"
@@ -72,6 +78,9 @@
         <action
             android:id="@+id/action_sendDocsFragment_to_loginScreenFragment"
             app:destination="@id/loginScreenFragment" />
+        <action
+            android:id="@+id/action_sendDocsFragment_self"
+            app:destination="@id/sendDocsFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewDocsFragment"
@@ -93,6 +102,9 @@
         <action
             android:id="@+id/action_viewDocsFragment_to_loginScreenFragment"
             app:destination="@id/loginScreenFragment" />
+        <action
+            android:id="@+id/action_viewDocsFragment_self"
+            app:destination="@id/viewDocsFragment" />
     </fragment>
     <fragment
         android:id="@+id/imageViewFragment"

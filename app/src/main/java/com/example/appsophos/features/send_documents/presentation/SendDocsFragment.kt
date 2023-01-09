@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
@@ -92,6 +93,7 @@ class SendDocsFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun setAppBar(){
         val appBar = requireView().findViewById<MaterialToolbar>(R.id.topAppBar)
         appBar.setNavigationOnClickListener{
@@ -118,6 +120,16 @@ class SendDocsFragment : Fragment() {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         SharedApp.prefs?.modePref = true
                     }
+                    true
+                }
+                R.id.lang_option -> {
+                    var lang = SharedApp.prefs?.langPref
+                    if (lang.equals("es")) {
+                        setLang("en")
+                    } else {
+                        setLang("es")
+                    }
+                    findNavController().navigate(R.id.action_sendDocsFragment_self)
                     true
                 }
                 R.id.close_option -> {
@@ -284,6 +296,15 @@ class SendDocsFragment : Fragment() {
             .setNeutralButton(R.string.alert_close_spanish) { dialog, which ->
             }
             .show()
+    }
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun setLang(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        resources.updateConfiguration(config, requireContext().resources.displayMetrics)
+        prefs?.langPref = lang
     }
 }
 

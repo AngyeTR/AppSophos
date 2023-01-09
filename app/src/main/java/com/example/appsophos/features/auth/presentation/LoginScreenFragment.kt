@@ -1,6 +1,8 @@
 package com.example.appsophos.features.auth.presentation
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +29,9 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import com.example.appsophos.MainActivity
+import com.example.appsophos.SharedApp
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.util.*
 
 @AndroidEntryPoint
 class LoginScreenFragment  : Fragment() {
@@ -40,10 +44,17 @@ class LoginScreenFragment  : Fragment() {
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
     var canAuth: Boolean = false
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkBiometricAvailability()
-
+        var lang = prefs?.langPref
+        if(lang.equals("es")) {
+            setLang("es")
+        }
+        else {
+            setLang("en")
+        }
     }
 
     override fun onCreateView(
@@ -182,5 +193,13 @@ class LoginScreenFragment  : Fragment() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }
-
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun setLang(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        resources.updateConfiguration(config, requireContext().resources.displayMetrics)
+        prefs?.langPref = lang
+    }
 }
