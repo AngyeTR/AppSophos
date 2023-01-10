@@ -6,7 +6,8 @@
     <item
         android:id="@+id/send_option"
         android:title="@string/menu_send_document_spanish"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        />
 
     <item
         android:id="@+id/view_option"

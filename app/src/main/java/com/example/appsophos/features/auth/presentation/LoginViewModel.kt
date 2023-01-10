@@ -17,13 +17,12 @@ class LoginViewModel @Inject constructor(private val api: ApiService) : ViewMode
     val idUsuario = MutableLiveData<String>()
     lateinit var inputEmail : String
 
+
     fun loginFun(email: String, password: String) {
         viewModelScope.launch (Dispatchers.IO) {
             inputEmail = email
             val user = api.fetchUserInfo(email, password)
             val body = user.execute().body()
-
-
             if (!body?.nombre.isNullOrBlank() && body?.nombre.toString().isNotEmpty()) {
                 userName.postValue(body?.nombre.toString())
                 idUsuario.postValue(inputEmail)

@@ -15,22 +15,18 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("RS_Usuarios")
-    //suspend
     fun fetchUserInfo(@Query("idUsuario") idUsuario : String,@Query("clave") clave: String) : Call<User>
 
     @GET("RS_Documentos")
-    //suspend
     fun fetchDocumentsByEmail(@Query("correo") correo: String): Call<Documents>
 
     @GET("RS_Documentos")
-    //suspend
     fun fetchDocumentsById(@Query("idRegistro") idRegistro: String): Call<Documents>
 
     @POST("RS_Documentos")
     suspend fun addDocument(@Body document: DocumentAdd) : Response<Unit>
 
     @GET("RS_Oficinas")
-    //suspend
     fun getOfficesInfo(): Call<Offices>
 
     @GET("RS_Oficinas")

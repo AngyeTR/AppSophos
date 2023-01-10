@@ -52,6 +52,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvLoginMessage"
             app:startIconDrawable="@drawable/email"
+            android:background="?attr/cardBackgroundColor"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -69,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="@string/login_password_spanish"
+            android:background="?attr/cardBackgroundColor"
             app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

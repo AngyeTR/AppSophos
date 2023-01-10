@@ -25,10 +25,9 @@ class MenuScreenFragment: Fragment() {
         super.onCreate(savedInstanceState)
         userName = prefs?.namePref.toString()
         var lang = prefs?.langPref
-        if(lang.equals("es")) {
+        if (lang.equals("es")) {
             setLang("es")
-        }
-         else {
+        } else {
             setLang("en")
         }
     }
@@ -93,10 +92,9 @@ class MenuScreenFragment: Fragment() {
                 }
                 R.id.lang_option -> {
                     var lang = prefs?.langPref
-                   if(lang.equals("es")) {
-                       setLang("en")
-                    }
-                    else {
+                    if (lang.equals("es")) {
+                        setLang("en")
+                    } else {
                         setLang("es")
                     }
                     findNavController().navigate(R.id.action_menuScreenFragment_self)
@@ -120,4 +118,5 @@ class MenuScreenFragment: Fragment() {
         resources.updateConfiguration(config, requireContext().resources.displayMetrics)
         prefs?.langPref = lang
     }
+
 }

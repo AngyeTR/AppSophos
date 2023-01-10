@@ -10,8 +10,8 @@
     <color name="dark_gray">#262626</color>
     <color name="aqua">#00C8FF</color>
     <color name="dark_background">#3A275B</color>
-    <color name="whiteTransparent">#10FE1191</color>
-    <color name="backgroundTransparent">#803A275B</color>
+    <color name="whiteTransparent">#107800FD</color>
+    <color name="backgroundTransparent">#307800FD</color>
 
     <color name="notColor">#00000000</color>
 

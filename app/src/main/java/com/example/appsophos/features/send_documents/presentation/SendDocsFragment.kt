@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat
 import com.example.appsophos.SharedApp
 import com.example.appsophos.prefs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
@@ -44,6 +45,7 @@ class SendDocsFragment : Fragment() {
     var infoIsComplete = true
     var processedString: String = ""
     var  attachment: String = ""
+
 
     private val PERMISSION_CAMARA: Int = 100
     private val PERMISSION_EXTERNAL_STORAGE: Int = 100
@@ -64,7 +66,6 @@ class SendDocsFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val inputCamera= view.findViewById<ImageButton>(R.id.ibAddPhoto)
         val inputDoc = view.findViewById<Button>(R.id.cbLoadDoc)
         val sendBtn = view.findViewById<Button>(R.id.cbSend)

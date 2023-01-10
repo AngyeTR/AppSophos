@@ -1,6 +1,5 @@
 package com.example.appsophos.features.auth.presentation
 
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -19,17 +18,12 @@ import com.example.appsophos.R.id.*
 import com.example.appsophos.SharedApp.Companion.prefs
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.Executor
-import javax.inject.Inject
-import android.provider.Settings
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
-import com.example.appsophos.MainActivity
-import com.example.appsophos.SharedApp
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
@@ -49,10 +43,9 @@ class LoginScreenFragment  : Fragment() {
         super.onCreate(savedInstanceState)
         checkBiometricAvailability()
         var lang = prefs?.langPref
-        if(lang.equals("es")) {
+        if (lang.equals("es")) {
             setLang("es")
-        }
-        else {
+        } else {
             setLang("en")
         }
     }
@@ -105,7 +98,16 @@ class LoginScreenFragment  : Fragment() {
             Toast.makeText(activity?.applicationContext, R.string.login_directions_spanish, Toast.LENGTH_SHORT).show()
         }
         else {
-            viewModel.loginFun(email, password)
+            try {
+                viewModel.loginFun(email, password)
+            } catch (e: Exception){
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Error de red")
+                    .setMessage("Ha ocurrido un error de red. Por favor verifique su conexión a internet. si este error persiste, por favor contacte a Soporte Tecnico")
+                    .setNeutralButton(resources.getString(R.string.alert_close_spanish)) { dialog, which ->
+                    }
+                    .show()
+            }
         }
     }
 
@@ -124,7 +126,16 @@ class LoginScreenFragment  : Fragment() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     loadUserFingerPrintPreferences()
-                    viewModel.loginFun(email, password)
+                    try { viewModel.loginFun(email, password)}
+                    catch (e: RuntimeException){
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setTitle("Error de red")
+                            .setMessage("Ha ocurrido un error de red. Por favor verifique su conexión a internet. si este error persiste, por favor contacte a Soporte Tecnico")
+                            .setNeutralButton(resources.getString(R.string.alert_close_spanish)) { dialog, which ->
+                            }
+                            .show()
+                    }
+
                 }
 
                 override fun onAuthenticationFailed() {
