@@ -48,4 +48,5 @@
     <string name="doc_number_spanish">Document number</string>
     <string name="add_photo_icon">add photo icon</string>
     <string name="office_closest_office">" The nearest office to your location is: "</string>
+    <string name="alert_sendDocuments_error">An error occurred while trying to send the information</string>
 </resources>

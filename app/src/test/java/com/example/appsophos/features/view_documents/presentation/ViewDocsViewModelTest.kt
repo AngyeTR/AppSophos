@@ -1,14 +1,12 @@
-package com.example.appsophos.features.auth.presentation
+package com.example.appsophos.features.view_documents.presentation
 
-import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.appsophos.core.APIClient
 import com.example.appsophos.core.services.remote.ApiService
 import com.example.appsophos.di.NetworkModule
-import com.example.appsophos.features.auth.domain.User
+import com.example.appsophos.features.auth.presentation.LoginViewModel
+import com.example.appsophos.features.view_documents.domain.Document
 import com.example.appsophos.getOrAwaitValue
 import io.mockk.MockKAnnotations
-import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,18 +17,17 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import retrofit2.Call
 
 @ExperimentalCoroutinesApi
-class LoginViewModelTest {
+class ViewDocsViewModelTest {
 
     @RelaxedMockK
     private lateinit var api: ApiService
 
-    lateinit var loginViewModel: LoginViewModel
+    lateinit var viewModel: ViewDocsViewModel
 
     @get:Rule
-    var rule:InstantTaskExecutorRule = InstantTaskExecutorRule()
+    var rule: InstantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun onBefore() {
@@ -38,7 +35,7 @@ class LoginViewModelTest {
 
 
         api = NetworkModule.provideRetrofit()
-        loginViewModel = LoginViewModel(api)
+        viewModel = ViewDocsViewModel(api)
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
 
@@ -48,27 +45,24 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `login function with correct data returns userName`() = runTest {
+    fun `get documents function with correct email returns a List of documents`() = runTest {
         //Given
         val email = "angye95@utp.edu.co"
-        val password = "vdYc38kG85V2"
         //When
-        loginViewModel.loginFun(email, password)
-        var value = loginViewModel.userName.getOrAwaitValue()
+        viewModel.getDocumentsByEmail(email)
+        var value = viewModel.documentByEmailModel.getOrAwaitValue()
         //Then
-        assert(value == "Angie Tatiana")
+        assert(value is List)
     }
 
     @Test
-    fun `login function with incorrect data returns Empty`() = runTest {
+    fun `get document function with correct idRegistro returns a document`() = runTest {
         //Given
-        loginViewModel = LoginViewModel(api)
-        val email = "angye95@utp"
-        val password = "vdYc38kG85"
-        loginViewModel.loginFun(email, password)
-        var value = loginViewModel.userName.getOrAwaitValue()
+        val idRegistro = "119"
+        //When
+        viewModel.getDocumentsById(idRegistro)
+        var value = viewModel.documentbyIdRegistro.getOrAwaitValue()
         //Then
-        assert(value == "")
+        assert(value is Document)
     }
-
 }

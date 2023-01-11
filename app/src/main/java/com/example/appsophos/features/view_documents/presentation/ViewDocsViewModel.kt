@@ -17,7 +17,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ViewDocsViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
-//class ViewDocsViewModel : ViewModel() {
 
     lateinit var email: String
     lateinit var idRegistro: String

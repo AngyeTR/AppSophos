@@ -9,7 +9,6 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appsophos.core.APIClient.getRetrofit
 import com.example.appsophos.core.services.remote.ApiService
 import com.example.appsophos.features.send_documents.domain.DocumentAdd
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,10 +26,12 @@ class SendDocsViewModel @Inject constructor(private val api: ApiService) : ViewM
     var bitMapImage = MutableLiveData<Bitmap>()
     var documentToPost = MutableLiveData<DocumentAdd>()
     var processedString: String = ""
+    var apiResponse = MutableLiveData<Boolean>()
 
     fun postDocument(document: DocumentAdd) {
         viewModelScope.launch (Dispatchers.IO) {
             val documents = api.addDocument(document)
+            apiResponse.postValue(documents.isSuccessful)
         }
     }
 

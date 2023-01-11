@@ -187,8 +187,16 @@ class SendDocsFragment : Fragment() {
                 val document: DocumentAdd
                 document = it
                 viewModel.postDocument(document)
+                viewModel.apiResponse.observe(viewLifecycleOwner, Observer{
+                    var status = it
+                    if(status){
+                        Toast.makeText(activity?.applicationContext, "Success", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        Toast.makeText(activity?.applicationContext, R.string.alert_sendDocuments_error, Toast.LENGTH_SHORT).show()
+                    }
+                    })
             })
-            Toast.makeText(activity?.applicationContext, "Success", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_sendDocsFragment_to_menuScreenFragment)
         }
         else {
