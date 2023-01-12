@@ -121,6 +121,7 @@ class SendDocsFragment : Fragment() {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         SharedApp.prefs?.modePref = true
                     }
+                    findNavController().navigate(R.id.action_menuScreenFragment_self)
                     true
                 }
                 R.id.lang_option -> {

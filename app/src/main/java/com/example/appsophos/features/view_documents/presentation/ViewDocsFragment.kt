@@ -96,6 +96,7 @@ class ViewDocsFragment : Fragment() {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         prefs?.modePref = true
                     }
+                    findNavController().navigate(R.id.action_menuScreenFragment_self)
                     true
                 }
                 R.id.lang_option -> {
