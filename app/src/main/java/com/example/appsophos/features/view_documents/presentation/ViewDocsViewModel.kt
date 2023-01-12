@@ -3,11 +3,9 @@ package com.example.appsophos.features.view_documents.presentation
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appsophos.core.APIClient.getRetrofit
 import com.example.appsophos.core.services.remote.ApiService
 import com.example.appsophos.features.view_documents.domain.Document
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,14 +16,11 @@ import javax.inject.Inject
 @HiltViewModel
 class ViewDocsViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
 
-    lateinit var email: String
-    lateinit var idRegistro: String
     val documentByEmailModel = MutableLiveData<List<Document>>()
     val documentbyIdRegistro = MutableLiveData<Document>()
     val encodedString = MutableLiveData<Bitmap>()
 
     fun getDocumentsByEmail(email: String) {
-        val em = email
         viewModelScope.launch (Dispatchers.IO) {
             val documents = api.fetchDocumentsByEmail(email)
             val documentList = documents.execute().body()!!.Items

@@ -1,10 +1,7 @@
 package com.example.appsophos.features.view_documents.presentation
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.appsophos.R
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ImageViewFragment : Fragment() {
@@ -27,7 +23,6 @@ class ImageViewFragment : Fragment() {
     lateinit var idRegistro: String
     lateinit var imageHolder: ImageView
     lateinit var textHolder: TextView
-    lateinit var convertedImage: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +37,6 @@ class ImageViewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_image_view, container, false)
     }
 
@@ -52,11 +46,7 @@ class ImageViewFragment : Fragment() {
         viewModel.documentbyIdRegistro.observe(viewLifecycleOwner, Observer {
             image = it.Adjunto.toString()
             if (!image.isNullOrEmpty() && image?.contains("9j")!! && image.isNotBlank()) {
-                //val imgConverted = convertString(image)
                 viewModel.convertString(image)
-
-                //imageHolder.setImageBitmap(imgConverted)
-                //textHolder.setText("")
             }
             else {
                 imageHolder.setImageResource(R.drawable.ic_baseline_image_not_supported_24)

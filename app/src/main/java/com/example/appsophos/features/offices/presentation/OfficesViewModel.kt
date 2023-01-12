@@ -14,7 +14,6 @@ import javax.inject.Inject
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-//class OfficesViewModel : ViewModel() {
 @HiltViewModel
 class OfficesViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
 

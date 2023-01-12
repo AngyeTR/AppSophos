@@ -23,4 +23,7 @@
         <item name="title">@string/app_dark_mode_spanish</item>
 
     </style>
+    <style name="SplashTheme" parent="Theme.AppSophos">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 </resources>

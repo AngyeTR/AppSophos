@@ -1,19 +1,14 @@
 package com.example.appsophos.features.view_documents.presentation
 
 import android.os.Build
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appsophos.R
 import com.example.appsophos.features.view_documents.domain.Document
 import com.google.android.material.card.MaterialCardView
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DocumentViewHolder(view: View,

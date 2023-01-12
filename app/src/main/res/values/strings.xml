@@ -53,6 +53,6 @@
     <string name="alert_permission_title_spanish">Permiso no habilitado</string>
     <string name="alert_permission_message_spanish">Habilite el permiso de forma manual en las configuraciones de su dispositivo</string>
     <string name="office_closest_office">La oficina más cercana a tu ubicación es:</string>
-    <string name="alert_sendDocuments_error">Ha ocurrido un error al tratar de enviar la información</string>
+    <string name="alert_sendDocuments_error">Ha ocurrido un error</string>
 
 </resources>

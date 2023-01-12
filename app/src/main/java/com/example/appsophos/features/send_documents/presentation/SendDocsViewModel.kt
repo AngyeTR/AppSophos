@@ -19,7 +19,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SendDocsViewModel @Inject constructor(private val api: ApiService) : ViewModel() {
-//class SendDocsViewModel : ViewModel() {
     lateinit var document: DocumentAdd
     val officeList = MutableLiveData<List<String>>()
     val encodedImg= MutableLiveData<String>()

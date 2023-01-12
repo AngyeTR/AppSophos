@@ -3,7 +3,6 @@ package com.example.appsophos.features.view_documents.presentation
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.appsophos.core.services.remote.ApiService
 import com.example.appsophos.di.NetworkModule
-import com.example.appsophos.features.auth.presentation.LoginViewModel
 import com.example.appsophos.features.view_documents.domain.Document
 import com.example.appsophos.getOrAwaitValue
 import io.mockk.MockKAnnotations
